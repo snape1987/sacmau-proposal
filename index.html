@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sắc Màu Của Con — Đề Án Gọi Vốn Cộng Đồng 2026</title>
+<meta name="description" content="Nền tảng đầu tiên tại Việt Nam kết hợp AI Chuyên Gia ADHD + cộng đồng phụ huynh + không gian an toàn cho trẻ neurodivergent. Miễn phí với phụ huynh.">
+<!-- Font Awesome 6 (real icon set — không dùng emoji mặc định) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+<style>
+:root{
+  /* 60% nền sáng — 30% xanh teal thương hiệu — 10% vàng ấm điểm nhấn (theo nghiên cứu phối màu sensory-friendly) */
+  --teal:#4A9B8E;--teal2:#3a7d72;--teal-soft:#6fb4a8;--teal-bg:#eaf5f3;--teal-bg2:#dcefeb;
+  --terra:#C98A6A;--terra-deep:#b9714f;--terra-bg:#fbf1ea;   /* terracotta đã làm dịu, bớt gắt */
+  --yellow:#F2C46D;--yellow-deep:#d9a23f;--yellow-bg:#fdf8ee;
+  --cream:#FDF6EC;--cream2:#f6efe2;--white:#fff;
+  --dark:#33403d;--gray:#6b7280;--border:#e8e6e0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--cream);color:var(--dark);line-height:1.7;font-size:16px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-weight:800;font-size:1.1rem;color:var(--teal)}
+.nav-links{display:flex;gap:18px}
+.nav-links a{text-decoration:none;color:var(--gray);font-size:.85rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{background:var(--yellow);color:#5a4413;padding:7px 18px;border-radius:20px;font-size:.85rem;font-weight:800;text-decoration:none;transition:transform .2s,background .2s}
+.nav-cta:hover{background:var(--yellow-deep);color:#3a2c08;transform:translateY(-1px)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#3a8377 0%,var(--teal) 55%,var(--teal-soft) 100%);color:#fff;padding:84px 24px 64px;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 75% 25%,rgba(242,196,109,.18) 0%,transparent 55%);pointer-events:none}
+.hero-tag{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:5px 16px;border-radius:20px;font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.15;margin-bottom:12px;letter-spacing:-1px}
+.hero h1 span{color:var(--yellow)}
+.hero-tagline{font-size:1.15rem;opacity:.92;font-style:italic;margin-bottom:28px}
+.hero-lead{max-width:620px;margin:0 auto;opacity:.94;font-size:.97rem}
+.hero-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:28px;margin-top:34px}
+.hero-stat .num{font-size:2rem;font-weight:900;display:block}
+.hero-stat .lbl{font-size:.78rem;opacity:.85}
+.hero-btn{display:inline-block;background:var(--yellow);color:#5a4413;padding:14px 38px;border-radius:30px;font-weight:800;font-size:1rem;text-decoration:none;margin-top:28px;box-shadow:0 6px 22px rgba(217,162,63,.4);transition:transform .2s,box-shadow .2s}
+.hero-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(217,162,63,.55)}
+
+/* SECTIONS */
+.section{padding:60px 24px}
+.section:nth-child(even){background:var(--white)}
+.container{max-width:920px;margin:0 auto}
+.section-tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:6px;margin-bottom:12px}
+.tag-teal{background:var(--teal-bg);color:var(--teal2)}
+.tag-terra{background:var(--terra-bg);color:var(--terra-deep)}
+.tag-yellow{background:var(--yellow-bg);color:var(--yellow-deep)}
+h2{font-size:clamp(1.55rem,3vw,2.05rem);font-weight:800;margin-bottom:14px;line-height:1.3}
+h3{font-size:1.15rem;font-weight:700;margin:24px 0 8px;color:var(--teal2)}
+p{margin-bottom:14px;color:#41504c}
+.lead{font-size:1.02rem;color:#41504c}
+
+/* PAIN — bullet layout với icon thật */
+.pain-list{display:flex;flex-direction:column;gap:16px;margin-top:28px}
+.pain-card{background:var(--white);border-radius:16px;padding:22px 24px;box-shadow:0 2px 12px rgba(70,90,85,.07);border-left:4px solid var(--terra);display:flex;gap:20px;align-items:flex-start;transition:transform .2s,box-shadow .2s}
+.pain-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(70,90,85,.12)}
+.pain-ico{flex-shrink:0;width:58px;height:58px;border-radius:14px;background:var(--terra-bg);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--terra-deep)}
+.pain-body{flex:1;min-width:0}
+.pain-num{font-size:.7rem;font-weight:700;color:var(--terra-deep);letter-spacing:1px;text-transform:uppercase}
+.pain-card h4{font-size:1.05rem;font-weight:800;margin:2px 0 10px;color:var(--dark)}
+.pain-card ul{list-style:none;margin:0}
+.pain-card ul li{font-size:.9rem;color:#55635f;padding:4px 0 4px 22px;position:relative}
+.pain-card ul li::before{content:'\f111';font-family:'Font Awesome 6 Free';font-weight:900;font-size:.4rem;color:var(--terra);position:absolute;left:4px;top:9px}
+
+/* 3 TIERS */
+.tier-wrap{display:flex;flex-direction:column;gap:16px;margin:28px 0}
+.tier-card{border-radius:18px;overflow:hidden;box-shadow:0 2px 14px rgba(70,90,85,.08);background:var(--white)}
+.tier-head{display:flex;align-items:center;gap:16px;padding:18px 24px;color:#fff}
+.t1 .tier-head{background:linear-gradient(120deg,var(--teal2),var(--teal))}
+.t2 .tier-head{background:linear-gradient(120deg,#b9714f,var(--terra))}
+.t3 .tier-head{background:linear-gradient(120deg,#6d56b0,#8a72cf)}
+.tier-n{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:900;flex-shrink:0}
+.tier-head h4{font-size:1.08rem;font-weight:800;line-height:1.3}
+.tier-badge{display:inline-block;font-size:.66rem;font-weight:800;padding:2px 9px;border-radius:10px;margin-bottom:4px;letter-spacing:.5px}
+.badge-live{background:#d8f6e2;color:#15703a}
+.badge-soon{background:rgba(255,255,255,.28);color:#fff}
+.tier-body{padding:20px 24px}
+.tier-body p{font-size:.92rem;color:#4a5854;margin-bottom:10px}
+.tier-body .mini-h{font-weight:800;color:var(--dark);font-size:.92rem;margin:14px 0 6px;display:flex;align-items:center;gap:8px}
+.tier-body .mini-h i{color:var(--teal)}
+.feat-list{list-style:none;margin:6px 0 4px}
+.feat-list li{font-size:.89rem;color:#4a5854;padding:6px 0 6px 26px;position:relative;border-bottom:1px dashed var(--border)}
+.feat-list li:last-child{border-bottom:none}
+.feat-list li i{position:absolute;left:2px;top:9px;color:var(--teal);font-size:.85rem}
+
+/* SOURCE CHIPS / channels */
+.src-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0 4px}
+.src-chip{background:var(--teal-bg);border:1px solid var(--teal-bg2);border-radius:12px;padding:11px 14px;font-size:.82rem}
+.src-chip b{display:block;color:var(--teal2);font-size:.86rem;margin-bottom:2px}
+.src-chip span{color:var(--gray);font-size:.76rem}
+.channel-card{background:var(--cream);border-radius:14px;padding:14px 18px;margin-bottom:10px;border-left:3px solid var(--teal)}
+.channel-card b{color:var(--dark)}
+.channel-card .meta{font-size:.8rem;color:var(--teal2);font-weight:600;margin-bottom:3px}
+.channel-card p{font-size:.86rem;color:#55635f;margin:0}
+
+/* webapp mockup placeholder */
+.mockup-frame{margin:18px 0;border:2px dashed var(--teal-soft);border-radius:16px;background:var(--teal-bg);padding:40px 24px;text-align:center;color:var(--teal2)}
+.mockup-frame i{font-size:2.4rem;display:block;margin-bottom:10px;opacity:.7}
+.mockup-frame .small{font-size:.82rem;color:var(--gray);margin-top:6px}
+.webapp-embed{margin:14px 0 4px;border-radius:16px;overflow:hidden;box-shadow:0 12px 36px rgba(70,90,85,.16);border:1px solid var(--border);background:var(--teal-bg)}
+.embed-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 16px;background:var(--white);border-bottom:1px solid var(--border);font-size:.83rem;color:var(--gray);flex-wrap:wrap}
+.embed-bar i{color:var(--teal)}
+.embed-bar a{color:var(--teal2);font-weight:700;text-decoration:none;white-space:nowrap}
+.embed-bar a:hover{color:var(--teal)}
+.embed-viewport{position:relative;overflow:hidden;width:100%;background:var(--cream)}
+.embed-viewport iframe{border:0;width:1280px;height:840px;transform-origin:top left;display:block}
+.corner-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0}
+.corner{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+.corner i{color:var(--teal);font-size:1.1rem;margin-bottom:6px;display:block}
+.corner b{display:block;font-size:.9rem;margin-bottom:3px;color:var(--dark)}
+.corner span{font-size:.8rem;color:var(--gray)}
+
+/* AI HIGHLIGHT */
+.ai-box{background:linear-gradient(135deg,var(--teal-bg),var(--yellow-bg));border:1px solid #bfe0d9;border-radius:18px;padding:30px;margin:28px 0}
+.ai-box h3{color:var(--teal2);font-size:1.22rem;margin-top:0}
+.ai-features{list-style:none;margin-top:12px}
+.ai-features li{padding:9px 0;border-bottom:1px solid rgba(74,155,142,.18);font-size:.92rem;display:flex;gap:10px;align-items:flex-start}
+.ai-features li:last-child{border-bottom:none}
+.ai-features li i{color:var(--teal);margin-top:3px;flex-shrink:0}
+
+/* COMPARE TABLE */
+.compare-wrap{overflow-x:auto;margin:20px 0}
+table{width:100%;border-collapse:collapse;font-size:.88rem;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(70,90,85,.08)}
+thead tr{background:var(--teal2)}
+thead th{padding:12px 16px;text-align:left;color:#fff;font-size:.8rem;font-weight:700}
+thead th:nth-child(3){background:var(--teal)}
+tbody tr:nth-child(even){background:var(--teal-bg)}
+tbody tr:nth-child(odd){background:var(--white)}
+td{padding:11px 16px;vertical-align:top;color:#41504c}
+td:nth-child(3){color:var(--teal2);font-weight:600}
+.x{color:#d0694a}
+
+/* ROADMAP */
+.road{display:flex;flex-direction:column;gap:0;margin:28px 0;position:relative}
+.road-item{display:flex;gap:20px;padding-bottom:26px;position:relative}
+.road-item:not(:last-child)::before{content:'';position:absolute;left:23px;top:48px;bottom:0;width:2px;background:var(--border)}
+.road-dot{width:48px;height:48px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:1.1rem;z-index:1}
+.r1 .road-dot{background:var(--teal)}
+.r2 .road-dot{background:var(--terra)}
+.r3 .road-dot{background:#8a72cf}
+.road-body{flex:1;background:var(--white);border-radius:16px;padding:18px 22px;box-shadow:0 2px 10px rgba(70,90,85,.06)}
+.road-body .when{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gray)}
+.road-body h4{font-size:1.05rem;font-weight:800;margin:3px 0 8px;color:var(--dark)}
+.road-body p{font-size:.9rem;color:#4a5854;margin-bottom:8px}
+.road-body ul{margin:6px 0 0 18px}
+.road-body ul li{font-size:.88rem;color:#4a5854;margin-bottom:5px}
+.note-box{background:var(--yellow-bg);border:1px solid #ecd6a3;border-radius:12px;padding:13px 16px;font-size:.85rem;color:#7a5e1c;margin-top:10px}
+.note-box i{color:var(--yellow-deep);margin-right:6px}
+
+/* BUDGET + FUND LIVE */
+.fund-live{background:linear-gradient(135deg,var(--teal),var(--teal2));border-radius:20px;padding:30px 32px;color:#fff;margin:28px 0;box-shadow:0 8px 30px rgba(58,125,114,.25)}
+.fund-row{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.fund-raised{font-size:2.6rem;font-weight:900;line-height:1;color:var(--yellow)}
+.fund-raised small{display:block;font-size:.8rem;font-weight:500;opacity:.85;color:#fff;margin-top:4px}
+.fund-goal{text-align:right;font-size:1.05rem;font-weight:700}
+.fund-goal small{display:block;font-size:.76rem;font-weight:400;opacity:.8}
+.prog-track{height:16px;background:rgba(255,255,255,.22);border-radius:10px;overflow:hidden;margin:18px 0 10px}
+.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--yellow),#ffd98a);border-radius:10px;transition:width 1s ease}
+.prog-meta{font-size:.82rem;opacity:.9;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.prog-meta .live-dot{width:8px;height:8px;border-radius:50%;background:#7CFC9E;display:inline-block;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+.budget-bars{display:grid;gap:10px;margin-top:22px;max-width:560px;margin-left:auto;margin-right:auto}
+.bar-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.bar-item .label{font-size:.88rem;font-weight:600;color:var(--dark)}
+.bar-item .pct{font-size:.76rem;color:var(--gray);margin-top:2px}
+.bar-item .amount{font-size:1.05rem;font-weight:800;color:var(--teal2);white-space:nowrap}
+
+/* DONOR TABLE */
+.donor-wrap{margin:24px 0}
+.donor-wrap table{font-size:.85rem}
+.donor-wrap thead tr{background:var(--terra-deep)}
+.donor-wrap thead th:nth-child(3){background:var(--terra-deep)}
+.donor-empty{text-align:center;padding:30px 16px;background:var(--cream);border-radius:14px;color:var(--gray);border:1px dashed var(--border)}
+.donor-empty b{color:var(--terra-deep)}
+.amt-col{color:var(--terra-deep);font-weight:700;white-space:nowrap}
+
+/* PAY / QR */
+.pay-box{display:flex;gap:26px;flex-wrap:wrap;align-items:center;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:26px;margin:24px 0;box-shadow:0 4px 18px rgba(70,90,85,.08)}
+.qr-img{width:200px;height:200px;flex-shrink:0;border-radius:14px;border:1px solid var(--border);background:#fff;object-fit:contain}
+.bank-info{flex:1;min-width:230px}
+.bank-info .brow{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--border);font-size:.92rem}
+.bank-info .brow:last-child{border-bottom:none}
+.bank-info .brow .k{color:var(--gray)}
+.bank-info .brow .v{font-weight:700;color:var(--dark);text-align:right}
+.copy-btn{margin-top:12px;background:var(--teal-bg);border:1px solid var(--teal-soft);color:var(--teal2);padding:8px 16px;border-radius:10px;font-size:.84rem;font-weight:700;cursor:pointer;transition:background .2s}
+.copy-btn:hover{background:var(--teal-bg2)}
+.pay-actions{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0 4px}
+
+/* DONATE TIERS */
+.donate-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin:24px 0}
+.donate-card{background:var(--white);border-radius:16px;padding:22px 20px;box-shadow:0 2px 12px rgba(70,90,85,.07);text-align:center;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.donate-card:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(70,90,85,.13)}
+.donate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.dc1::before{background:var(--teal)}
+.dc2::before{background:var(--terra)}
+.dc3::before{background:var(--yellow)}
+.dc4::before{background:#8a72cf}
+.donate-ico{font-size:1.7rem;margin-bottom:8px;display:block;color:var(--teal)}
+.dc2 .donate-ico{color:var(--terra-deep)}.dc3 .donate-ico{color:var(--yellow-deep)}.dc4 .donate-ico{color:#7c5cbf}
+.donate-amount{font-size:1.35rem;font-weight:900;color:var(--dark);margin-bottom:4px}
+.donate-name{font-weight:700;font-size:.88rem;color:var(--teal2);margin-bottom:8px}
+.donate-desc{font-size:.82rem;color:var(--gray)}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.faq-item{background:var(--white);border-radius:14px;border-left:4px solid var(--teal);box-shadow:0 1px 6px rgba(70,90,85,.05);overflow:hidden}
+.faq-q{padding:16px 20px;font-weight:700;font-size:.95rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--dark);gap:12px}
+.faq-q .icon{color:var(--teal);font-size:1rem;transition:transform .2s;flex-shrink:0}
+.faq-a{padding:0 20px 16px;font-size:.9rem;color:#41504c;display:none}
+.faq-a.open{display:block}
+
+/* FOUNDER */
+.founder-card{background:var(--white);border-radius:18px;padding:28px;box-shadow:0 2px 14px rgba(70,90,85,.08);border-left:5px solid var(--teal);margin-top:24px}
+.founder-name{font-size:1.3rem;font-weight:800;color:var(--dark);margin-bottom:3px}
+.founder-role{color:var(--teal2);font-weight:600;font-size:.9rem;margin-bottom:14px}
+.founder-card p{color:#41504c}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,var(--teal),var(--teal2));padding:60px 24px;text-align:center;color:#fff}
+.cta-section h2{color:#fff;font-size:1.9rem;margin-bottom:14px}
+.cta-section p{color:rgba(255,255,255,.9);max-width:600px;margin:0 auto 28px}
+.cta-btn{display:inline-block;background:var(--yellow);color:#5a4413;padding:15px 42px;border-radius:30px;font-weight:900;font-size:1.02rem;text-decoration:none;box-shadow:0 6px 22px rgba(0,0,0,.2);margin:0 8px 10px;transition:transform .2s}
+.cta-btn:hover{transform:translatey(-2px)}
+.cta-btn.sec{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.45);color:#fff}
+/* sec button dùng ngoài nền teal → đổi màu cho dễ đọc */
+.pay-actions .cta-btn.sec{background:var(--teal-bg);border:1.5px solid var(--teal-soft);color:var(--teal2)}
+
+/* FLOATING DONATE */
+.float-donate{position:fixed;right:18px;bottom:18px;z-index:200;background:var(--yellow);color:#5a4413;padding:13px 22px;border-radius:30px;font-weight:800;font-size:.92rem;text-decoration:none;box-shadow:0 6px 22px rgba(217,162,63,.5);display:flex;align-items:center;gap:8px;transition:transform .2s}
+.float-donate:hover{transform:scale(1.05)}
+
+/* FOOTER */
+footer{background:var(--teal2);color:rgba(255,255,255,.85);padding:34px 24px;text-align:center;font-size:.85rem}
+footer a{color:var(--yellow);text-decoration:none}
+footer .disclaimer{margin:16px auto 0;font-size:.75rem;opacity:.7;max-width:640px}
+
+@media(max-width:640px){
+  .hero{padding:56px 20px 46px}
+  .nav-links{display:none}
+  .section{padding:42px 18px}
+  .pain-card{flex-direction:column;gap:12px}
+  .fund-raised{font-size:2rem}
+  .fund-goal{text-align:left}
+  .pay-box{flex-direction:column;align-items:stretch}
+  .qr-img{width:180px;height:180px;margin:0 auto}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">🌈 Sắc Màu Của Con</span>
+  <div class="nav-links">
+    <a href="#van-de">Vấn đề</a>
+    <a href="#giai-phap">Giải pháp</a>
+    <a href="#lo-trinh">Lộ trình</a>
+    <a href="#ngan-sach">Gây quỹ</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="#dong-gop" class="nav-cta">Ủng hộ ngay</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-tag">Đề Án Gọi Vốn Cộng Đồng · 2026</span>
+  <h1>Sắc Màu Của <span>Con</span></h1>
+  <p class="hero-tagline">"Mỗi tâm trí là một bức tranh riêng"</p>
+  <p class="hero-lead">
+    Nền tảng đầu tiên tại Việt Nam kết hợp <strong>AI Chuyên Gia ADHD</strong> +
+    <strong>cộng đồng phụ huynh không phán xét</strong> + <strong>không gian an toàn cho trẻ</strong> —
+    miễn phí hoàn toàn với phụ huynh.
+  </p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">~1 triệu</span><span class="lbl">Người tự kỷ tại VN (TCTK 2019)</span></div>
+    <div class="hero-stat"><span class="num">5.782</span><span class="lbl">Papers khoa học làm nền tảng</span></div>
+    <div class="hero-stat"><span class="num">731</span><span class="lbl">Transcript chuyên gia quốc tế</span></div>
+    <div class="hero-stat"><span class="num">0đ</span><span class="lbl">Mãi mãi miễn phí với phụ huynh</span></div>
+  </div>
+  <a href="#dong-gop" class="hero-btn">Cùng nhau xây ngôi nhà này →</a>
+</div>
+
+<!-- SECTION 1: VẤN ĐỀ -->
+<section class="section" id="van-de">
+<div class="container">
+  <span class="section-tag tag-terra">Vấn đề</span>
+  <h2>7 Nỗi Đau Mà Hầu Hết Cha Mẹ Đang Im Lặng Chịu Đựng</h2>
+  <p class="lead">Bạn không cô đơn. Hàng chục nghìn gia đình Việt Nam đang đối mặt với những điều này mỗi ngày:</p>
+
+  <div class="pain-list">
+
+    <div class="pain-card">
+      <div class="pain-ico"><i class="fa-solid fa-heart-crack"></i></div>
+      <div class="pain-body">
+        <div class="pain-num">Nỗi đau 01</div>
+        <h4>Cô đơn & lạc lối sau chẩn đoán</h4>
+        <ul>
+          <li>Nhận tờ giấy chẩn đoán rồi… không biết làm gì tiếp theo, không ai hướng dẫn từng bước.</li>
+          <li>Không có người thực sự hiểu nỗi lòng — kể cả người thân nhiều khi cũng không hiểu.</li>
+          <li>18–24 tháng đầu thường là giai đoạn cha mẹ hoang mang, thử sai và kiệt sức nhất.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pain-card">
+      <div class="pain-ico"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+      <div class="pain-body">
+        <div class="pain-num">Nỗi đau 02</div>
+        <h4>Thời gian & chi phí can thiệp quá lớn</h4>
+        <ul>
+          <li>Chi phí can thiệp 5–20 triệu/tháng — kéo dài nhiều năm, vượt sức nhiều gia đình.</li>
+          <li>Lịch trị liệu dày đặc, cha hoặc mẹ thường phải nghỉ việc để đưa đón và đồng hành.</li>
+          <li>Trung tâm chất lượng tập trung ở thành phố lớn — gia đình tỉnh xa gần như không tiếp cận được.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pain-card">
+      <div class="pain-ico"><i class="fa-solid fa-tablet-screen-button"></i></div>
+      <div class="pain-body">
+        <div class="pain-num">Nỗi đau 03</div>
+        <h4>Bất lực khi con làm bạn với iPad & YouTube</h4>
+        <ul>
+          <li>Con chỉ chịu ngồi yên khi có màn hình — cha mẹ biết không tốt nhưng không có gì thay thế.</li>
+          <li>Càng dùng nhiều, con càng khó tập trung, khó ngủ, khó tách khỏi thiết bị.</li>
+          <li>Cảm giác có lỗi kéo dài: "Mình đang để màn hình nuôi con thay mình."</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pain-card">
+      <div class="pain-ico"><i class="fa-solid fa-gamepad"></i></div>
+      <div class="pain-body">
+        <div class="pain-num">Nỗi đau 04</div>
+        <h4>Game & nội dung giải trí không dành cho con</h4>
+        <ul>
+          <li>Game hiện tại thiết kế cho trẻ điển hình — nhiều yếu tố bạo lực, tình cảm vượt quá sức hiểu của trẻ.</li>
+          <li>YouTube đẩy nội dung dopamine cao liên tục → sau khi tắt máy là cơn cáu gắt, meltdown khó kiểm soát.</li>
+          <li>Hầu như không có không gian giải trí được thiết kế riêng cho trẻ neurodivergent bằng tiếng Việt.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pain-card">
+      <div class="pain-ico"><i class="fa-solid fa-comment-slash"></i></div>
+      <div class="pain-body">
+        <div class="pain-num">Nỗi đau 05</div>
+        <h4>Mạng xã hội thiếu rõ ràng & thiếu cảm thông</h4>
+        <ul>
+          <li>Vào group Facebook tìm hỗ trợ nhưng gặp phán xét, thông tin sai lệch và drama không hồi kết.</li>
+          <li>Phụ huynh ngại ngùng, sợ lộ thông tin của con nên không dám hỏi thẳng.</li>
+          <li>Rất ít kênh giao tiếp 2 chiều, tương tác chuyên sâu — chủ yếu là post một chiều, trôi nhanh.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pain-card">
+      <div class="pain-ico"><i class="fa-solid fa-users-slash"></i></div>
+      <div class="pain-body">
+        <div class="pain-num">Nỗi đau 06</div>
+        <h4>Con không có bạn — bị cô lập & bắt nạt</h4>
+        <ul>
+          <li>Con khó hòa nhập, dễ bị bạn bè trêu chọc, bắt nạt và dần thu mình lại.</li>
+          <li>Trường lớp thiếu công cụ và sự thấu hiểu để hỗ trợ trẻ đặc biệt.</li>
+          <li>Thiếu một cộng đồng an toàn nơi con được là chính mình mà không bị đánh giá.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pain-card">
+      <div class="pain-ico"><i class="fa-solid fa-road-circle-exclamation"></i></div>
+      <div class="pain-body">
+        <div class="pain-num">Nỗi đau 07</div>
+        <h4>Nỗi lo về tương lai dài hạn của con</h4>
+        <ul>
+          <li>"Khi tôi già đi, ai sẽ lo cho con?" — câu hỏi ám ảnh hầu hết cha mẹ có con đặc biệt.</li>
+          <li>Việc làm phù hợp cho con, con đường trưởng thành và tự lập gần như chưa ai dẫn đường.</li>
+          <li>Cả những câu hỏi rất con người: bạn đời, gia đình tương lai của con sẽ thế nào?</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- SECTION 2: GIẢI PHÁP -->
+<section class="section" id="giai-phap">
+<div class="container">
+  <span class="section-tag tag-teal">Giải pháp</span>
+  <h2>Hệ Sinh Thái 3 Tầng — Đồng Hành Suốt Hành Trình</h2>
+  <p class="lead">Không phải một kênh YouTube. Không phải một app đơn lẻ. Mà là cả một hệ sinh thái được thiết kế riêng cho trẻ neurodivergent và gia đình các em tại Việt Nam.</p>
+
+  <div class="tier-wrap">
+
+    <!-- TẦNG 1 -->
+    <div class="tier-card t1">
+      <div class="tier-head">
+        <div class="tier-n">1</div>
+        <div>
+          <span class="tier-badge badge-live"><i class="fa-solid fa-circle" style="font-size:.5rem;vertical-align:middle"></i> ĐANG CHẠY</span>
+          <h4>Kho Dữ Liệu & Kênh Nội Dung "Thế Giới Sắc Màu Của Con"</h4>
+        </div>
+      </div>
+      <div class="tier-body">
+        <p>Tầng nền của cả hệ sinh thái: một kho tri thức ADHD/tự kỷ <strong>evidence-based</strong>, được dịch và tổng hợp sang tiếng Việt, làm "bộ não dữ liệu" cho AI và nội dung video.</p>
+
+        <div class="mini-h"><i class="fa-solid fa-database"></i> Kho dữ liệu được tổ chức thế nào</div>
+        <div class="src-grid">
+          <div class="src-chip"><b>5.782 papers</b><span>Nghiên cứu khoa học từ PubMed</span></div>
+          <div class="src-chip"><b>731 transcript</b><span>Bài giảng/video chuyên gia quốc tế</span></div>
+          <div class="src-chip"><b>13+ web article</b><span>Bài viết từ tổ chức y tế uy tín</span></div>
+          <div class="src-chip"><b>363+ item đã gắn tag</b><span>Phân loại theo taxonomy / track / hành trình</span></div>
+        </div>
+        <p style="font-size:.86rem;color:#55635f">Mỗi tài liệu được làm sạch, dịch, tóm tắt và phân loại tự động (theo chủ đề, độ tuổi, mức độ) rồi lưu vào cơ sở dữ liệu — để AI truy xuất đúng ngữ cảnh thay vì trả lời chung chung. Cập nhật <strong>tự động hàng ngày</strong> bằng Research Agent.</p>
+
+        <div class="mini-h"><i class="fa-solid fa-globe"></i> Nguồn website chính thống đang nạp vào DB</div>
+        <div class="src-grid">
+          <div class="src-chip"><b>WHO</b><span>Tổ chức Y tế Thế giới</span></div>
+          <div class="src-chip"><b>CDC</b><span>Trung tâm Kiểm soát Bệnh tật Hoa Kỳ</span></div>
+          <div class="src-chip"><b>NIMH</b><span>Viện Sức khỏe Tâm thần Quốc gia (Mỹ)</span></div>
+          <div class="src-chip"><b>Autism Speaks</b><span>Tổ chức tự kỷ lớn hàng đầu</span></div>
+          <div class="src-chip"><b>CHADD</b><span>Tổ chức quốc tế về ADHD</span></div>
+          <div class="src-chip"><b>NIH MedlinePlus</b><span>Thư viện Y khoa Quốc gia Mỹ</span></div>
+        </div>
+
+        <div class="mini-h"><i class="fa-solid fa-star"></i> Top kênh chuyên gia uy tín đang học hỏi transcript</div>
+        <div class="channel-card">
+          <div class="meta">How to ADHD · @HowtoADHD</div>
+          <p>Kênh giáo dục ADHD nổi tiếng toàn cầu (hàng triệu subscriber), do Jessica McCabe sáng lập — diễn giải khoa học ADHD thành mẹo thực hành dễ áp dụng cho cả phụ huynh và người lớn.</p>
+        </div>
+        <div class="channel-card">
+          <div class="meta">Dr. Russell Barkley</div>
+          <p>Một trong những nhà nghiên cứu ADHD hàng đầu thế giới, hàng chục năm công bố khoa học — nguồn kiến thức chuyên sâu, hàn lâm về cơ chế và điều trị ADHD.</p>
+        </div>
+        <div class="channel-card">
+          <div class="meta">Dr. Tony Attwood</div>
+          <p>Chuyên gia hàng đầu về hội chứng Asperger/tự kỷ, tác giả nhiều đầu sách kinh điển — góc nhìn lâm sàng sâu cho phổ tự kỷ.</p>
+        </div>
+        <div class="channel-card">
+          <div class="meta">Autism Speaks</div>
+          <p>Tổ chức tự kỷ lớn, kho tài liệu tổng quát dành cho phụ huynh: dấu hiệu sớm, chẩn đoán, can thiệp, trường học, việc làm, tuổi dậy thì.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TẦNG 2 -->
+    <div class="tier-card t2">
+      <div class="tier-head">
+        <div class="tier-n">2</div>
+        <div>
+          <span class="tier-badge badge-soon"><i class="fa-solid fa-rocket"></i> RA MẮT 30/6/2026</span>
+          <h4>AI Chuyên Gia ADHD — Tư Vấn Cá Nhân Hóa 24/7</h4>
+        </div>
+      </div>
+      <div class="tier-body">
+        <p><strong>Giai đoạn 1</strong> là một <strong>project AI</strong> với "bộ não" là <strong>các AI Agent mạnh nhất hiện nay</strong>, kết hợp dữ liệu được train từ kho nội dung chuẩn ở Tầng 1 — không phải một chatbot chung chung.</p>
+
+        <div class="mini-h"><i class="fa-solid fa-bolt"></i> Giai đoạn 1 — AI sẽ làm được gì</div>
+        <ul class="feat-list">
+          <li><i class="fa-solid fa-circle-check"></i> Nhận thông tin về con và <strong>phân loại riêng từng hồ sơ</strong> dữ liệu mà cha mẹ gửi tới.</li>
+          <li><i class="fa-solid fa-circle-check"></i> Theo dõi & tư vấn <strong>riêng cho từng con</strong> qua tài khoản đăng nhập của bố mẹ.</li>
+          <li><i class="fa-solid fa-circle-check"></i> Có <strong>bộ câu hỏi hướng dẫn chi tiết</strong> để bố mẹ nhập và phác thảo "chân dung" về con.</li>
+          <li><i class="fa-solid fa-circle-check"></i> Dựa trên dữ liệu đó để <strong>đánh giá sơ bộ tình trạng</strong> và gợi ý hướng đồng hành phù hợp.</li>
+          <li><i class="fa-solid fa-circle-check"></i> Ghi nhớ lịch sử, theo dõi tiến bộ của bé <strong>theo thời gian</strong> — thuần Việt, hiểu bối cảnh VN.</li>
+        </ul>
+
+        <div class="mini-h"><i class="fa-solid fa-flask"></i> Giai đoạn 2 — Nâng cấp chiều sâu</div>
+        <ul class="feat-list">
+          <li><i class="fa-solid fa-circle-check"></i> Training mô hình AI <strong>local</strong> để bảo mật và tối ưu cho dữ liệu tiếng Việt.</li>
+          <li><i class="fa-solid fa-circle-check"></i> Sự tham gia của <strong>các chuyên gia đầu ngành</strong> trong việc xây dựng chất lượng tư vấn.</li>
+          <li><i class="fa-solid fa-circle-check"></i> Đánh giá tình trạng chuẩn xác hơn và <strong>đề xuất phương án can thiệp/điều trị</strong> có thẩm định chuyên môn.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TẦNG 3 -->
+    <div class="tier-card t3">
+      <div class="tier-head">
+        <div class="tier-n">3</div>
+        <div>
+          <span class="tier-badge badge-soon"><i class="fa-solid fa-house-chimney-window"></i> RA MẮT GĐ 2</span>
+          <h4>Platform Cộng Đồng — Ngôi Nhà An Toàn</h4>
+        </div>
+      </div>
+      <div class="tier-body">
+        <p>Một webapp kỳ vọng trở thành nơi các con vào <strong>giải trí — học tập — chia sẻ</strong> là chính, để thay thế YouTube và game thiếu kiểm soát mà các con hay dùng. Mọi nội dung đều được xây dựng/kiểm duyệt phù hợp với trẻ neurodivergent.</p>
+
+        <div class="mini-h"><i class="fa-solid fa-child-reaching"></i> Góc của con</div>
+        <div class="corner-grid">
+          <div class="corner"><i class="fa-solid fa-puzzle-piece"></i><b>Góc Game trí tuệ</b><span>Game thú vị, phù hợp — gồm cả cờ trí tuệ, được xây dựng nội dung riêng.</span></div>
+          <div class="corner"><i class="fa-solid fa-clapperboard"></i><b>Góc Video</b><span>Giải trí xen học tập, giáo dục hành vi theo lứa tuổi / nhận thức / tình trạng.</span></div>
+          <div class="corner"><i class="fa-solid fa-music"></i><b>Góc Âm nhạc</b><span>Âm thanh, ca nhạc dịu, hỗ trợ điều hòa cảm xúc cho con.</span></div>
+          <div class="corner"><i class="fa-solid fa-star"></i><b>Góc Mong ước của con</b><span>Nơi các bé có nhận thức được chia sẻ ước mơ của mình.</span></div>
+          <div class="corner"><i class="fa-solid fa-medal"></i><b>Góc Tài năng đặc biệt</b><span>Tôn vinh tài năng riêng để ba mẹ định hướng cho con.</span></div>
+        </div>
+
+        <div class="mini-h"><i class="fa-solid fa-user-shield"></i> Góc của cha mẹ</div>
+        <div class="corner-grid">
+          <div class="corner"><i class="fa-solid fa-book-open"></i><b>Nhật ký hành trình</b><span>Ghi lại tiến bộ của con — riêng tư, chỉ mình bạn xem sau khi đăng nhập.</span></div>
+          <div class="corner"><i class="fa-solid fa-newspaper"></i><b>Kiến thức mới nhất</b><span>Nội dung & video giải thích cập nhật liên tục từ kho dữ liệu.</span></div>
+          <div class="corner"><i class="fa-solid fa-ranking-star"></i><b>Top 5 tài liệu ADHD</b><span>Tài liệu mới & giá trị nhất — trích dẫn rõ tên, logo, nguồn website.</span></div>
+          <div class="corner"><i class="fa-solid fa-robot"></i><b>Cửa sổ AI Chuyên gia</b><span>Tư vấn cá nhân hóa, có list câu hỏi & hình ảnh gợi ý cho ba mẹ điền.</span></div>
+          <div class="corner"><i class="fa-solid fa-folder-open"></i><b>Hồ sơ & tài liệu của con</b><span>Hướng dẫn ba mẹ nên sưu tầm/gửi gì để AI hiểu rõ tình trạng của con.</span></div>
+          <div class="corner"><i class="fa-solid fa-comments"></i><b>Case tư vấn thực tế</b><span>Các tình huống tư vấn thật của AI ADHD để ba mẹ tham khảo.</span></div>
+        </div>
+
+        <!-- WEBAPP DEMO — iframe nhúng (web lồng trong web), tương tác trực tiếp -->
+        <div class="mini-h"><i class="fa-solid fa-display"></i> Demo giao diện nền tảng (bản dựng — bấm thử)</div>
+        <div class="webapp-embed">
+          <div class="embed-bar">
+            <span><i class="fa-solid fa-hand-pointer"></i> Demo tương tác — bấm các tab, thử hỏi Trợ lý AI bên trong khung</span>
+            <a href="webapp-demo/index.html" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình</a>
+          </div>
+          <div class="embed-viewport">
+            <iframe src="webapp-demo/index.html" title="Demo nền tảng cộng đồng Sắc Màu" loading="lazy"></iframe>
+          </div>
+        </div>
+        <p style="font-size:.8rem;color:var(--gray);margin-top:8px"><i class="fa-solid fa-circle-info"></i> Đây là bản demo minh hoạ giao diện — nội dung mẫu, một số nút là tính năng dự kiến.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AI Box: Tại sao AI khác biệt (đồng bộ với Tầng 2) -->
+  <div class="ai-box">
+    <h3><i class="fa-solid fa-robot"></i> Tại Sao AI Này Khác Hoàn Toàn Với ChatGPT?</h3>
+    <ul class="ai-features">
+      <li><i class="fa-solid fa-check"></i> "Bộ não" là <strong>các AI Agent mạnh nhất hiện nay</strong> + dữ liệu train từ <strong>5.782 papers + 731 transcript</strong> ADHD/tự kỷ — không phải internet tổng quát.</li>
+      <li><i class="fa-solid fa-check"></i> Tạo <strong>hồ sơ riêng cho từng con</strong>, phân loại dữ liệu cha mẹ gửi và theo dõi tiến bộ theo thời gian.</li>
+      <li><i class="fa-solid fa-check"></i> Có <strong>bộ câu hỏi hướng dẫn</strong> giúp ba mẹ phác thảo chân dung con để AI đánh giá sơ bộ.</li>
+      <li><i class="fa-solid fa-check"></i> <strong>Thuần Việt</strong>, hiểu văn hóa và hệ thống giáo dục Việt Nam.</li>
+      <li><i class="fa-solid fa-check"></i> <strong>Bảo mật tuyệt đối</strong> — dữ liệu của con chỉ thuộc về gia đình bạn, không train AI toàn cầu.</li>
+      <li><i class="fa-solid fa-check"></i> Giai đoạn 2: <strong>training AI local + chuyên gia đầu ngành</strong> thẩm định chất lượng tư vấn.</li>
+    </ul>
+  </div>
+
+  <div class="compare-wrap">
+    <table>
+      <thead><tr><th>Tiêu chí</th><th>ChatGPT thông thường</th><th><i class="fa-solid fa-check"></i> AI Sắc Màu Của Con</th></tr></thead>
+      <tbody>
+        <tr><td>Nguồn kiến thức</td><td>Internet tổng quát</td><td>5.782 papers + 731 transcript ADHD</td></tr>
+        <tr><td>Nhớ & phân loại hồ sơ con</td><td class="x">✗ Không</td><td>✓ Hồ sơ riêng, theo dõi từng bé lâu dài</td></tr>
+        <tr><td>Ngôn ngữ</td><td>Tiếng Anh là chính</td><td>✓ Thuần Việt, hiểu bối cảnh VN</td></tr>
+        <tr><td>Cá nhân hóa</td><td>Trả lời chung chung</td><td>✓ Theo "chân dung" cụ thể của từng bé</td></tr>
+        <tr><td>Chuyên gia thẩm định</td><td class="x">✗ Không có</td><td>✓ Chuyên gia đầu ngành (GĐ 2)</td></tr>
+        <tr><td>Bảo mật data trẻ</td><td class="x">Dùng train AI toàn cầu</td><td>✓ Chỉ thuộc về gia đình bạn</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- SECTION 3: LỘ TRÌNH -->
+<section class="section" id="lo-trinh">
+<div class="container">
+  <span class="section-tag tag-teal">Lộ trình</span>
+  <h2>Ba Giai Đoạn — Từ Việt Nam Ra Thế Giới</h2>
+  <p class="lead">Chúng tôi đi từng bước chắc chắn. Mỗi giai đoạn chỉ mở ra khi giai đoạn trước thực sự thành công.</p>
+
+  <div class="road">
+
+    <div class="road-item r1">
+      <div class="road-dot">1</div>
+      <div class="road-body">
+        <div class="when">Đang chạy · 6 tháng đầu</div>
+        <h4>Giai Đoạn 1 — Kho Dữ Liệu + AI Chuyên Gia ADHD</h4>
+        <p>Hoàn thiện kho tri thức, ra mắt <strong>AI Chuyên Gia ADHD (30/6/2026)</strong> và bản MVP của platform cộng đồng. Đây chính là phần đang gọi vốn.</p>
+        <ul>
+          <li>Kênh nội dung evidence-based + Research Agent cập nhật dữ liệu hàng ngày.</li>
+          <li>AI tư vấn cá nhân hóa, hồ sơ riêng từng con, thuần Việt.</li>
+          <li>Nền tảng cộng đồng cho cha mẹ (MVP).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="road-item r2">
+      <div class="road-dot">2</div>
+      <div class="road-body">
+        <div class="when">12 – 18 tháng · sau GĐ 1</div>
+        <h4>Giai Đoạn 2 — Bùng Nổ Dữ Liệu Đa Phương Tiện & Chiến Dịch Offline</h4>
+        <p>Tích hợp AI toàn diện, ra mắt <strong>Kids Corner</strong>, mời chuyên gia thẩm định và khởi động chiến dịch offline vùng cao (phát cẩm nang, mã QR "cứu" trẻ khỏi tivi/điện thoại).</p>
+        <ul>
+          <li>Ra mắt & nâng cấp webapp đầy đủ — Android, iOS, iPadOS.</li>
+          <li>Người dùng gửi nhiều video/hình ảnh để AI (Gemini Vision) phân tích → hạ tầng & năng lực AI chịu tải lớn, chi phí tăng mạnh.</li>
+          <li>Marketing offline tới các vùng núi xa, đồng bào thiểu số — nơi nhận thức của phụ huynh còn hạn chế trong khi công nghệ đã thay đổi hành vi trẻ một cách nặng nề.</li>
+        </ul>
+        <div class="note-box">
+          <i class="fa-solid fa-circle-info"></i><strong>Lời ngỏ minh bạch:</strong> Hiện tại Sắc Màu <strong>CHƯA</strong> nhận tài trợ cho Giai đoạn 2. Chỉ khi Giai đoạn 1 thành công rực rỡ, dự án mới mở cổng gọi vốn tiếp theo. Phần chi phí dư ra của Giai đoạn 1 (nếu có) sẽ <strong>tự động phân bổ 100% sang Giai đoạn 2</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div class="road-item r3">
+      <div class="road-dot">3</div>
+      <div class="road-body">
+        <div class="when">Tầm nhìn dài hạn</div>
+        <h4>Giai Đoạn 3 — Go Global & Bền Vững</h4>
+        <p>Theo Tổng cục Thống kê (2019), Việt Nam có khoảng <strong>1 triệu người tự kỷ</strong> (tỷ lệ trẻ mắc ước ~1% số trẻ sinh ra). Mục tiêu của chúng tôi là đồng hành được với <strong>~30%</strong> trong số đó.</p>
+        <ul>
+          <li>Mở rộng đối tượng tư vấn trên toàn Việt Nam và thêm các nhóm khó khăn khác.</li>
+          <li>Thêm <strong>tiếng Anh</strong> — hướng tới Go Global (thương hiệu quốc tế Colorful Minds).</li>
+          <li>Hợp tác các tổ chức <strong>NGO / từ thiện thế giới</strong> để ổn định chi phí lâu dài — tránh tuyệt đối phụ thuộc quảng cáo thương mại làm ảnh hưởng nền tảng.</li>
+          <li>Kết hợp <strong>đối tác y tế</strong> nâng cấp chất lượng và phát triển rộng mô hình.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- SECTION 4: GÂY QUỸ -->
+<section class="section" id="ngan-sach">
+<div class="container">
+  <span class="section-tag tag-yellow">Gây quỹ minh bạch</span>
+  <h2>Mục Tiêu Giai Đoạn 1 — Theo Thời Gian Thực</h2>
+  <p class="lead">Giai đoạn 1 (kênh nội dung) đang chạy hoàn toàn miễn phí. Nguồn vốn gọi được sẽ dùng để build AI + Platform — thứ mang lại giá trị lâu dài nhất. Mọi con số dưới đây cập nhật trực tiếp từ Google Sheet công khai.</p>
+
+  <!-- LIVE FUND -->
+  <div class="fund-live">
+    <div class="fund-row">
+      <div class="fund-raised"><span id="raised-amount">…</span><small>Đã quyên góp</small></div>
+      <div class="fund-goal"><span id="goal-amount">100.000.000đ</span><small>Mục tiêu Giai Đoạn 1</small></div>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+    <div class="prog-meta">
+      <span class="live-dot"></span>
+      <span id="prog-pct">0%</span>
+      <span>·</span>
+      <span><i class="fa-solid fa-users"></i> <span id="donor-count">0</span> nhà tài trợ</span>
+      <span>·</span>
+      <span id="update-status">Cập nhật theo thời gian thực</span>
+    </div>
+  </div>
+
+  <h3>Số vốn này được dùng vào đâu?</h3>
+  <div class="budget-bars">
+    <div class="bar-item">
+      <div><div class="label"><i class="fa-solid fa-screwdriver-wrench" style="color:var(--teal)"></i> Tech & UI — RAG System, AI Chatbot, Branding</div><div class="pct">30%</div></div>
+      <div class="amount">30 triệu</div>
+    </div>
+    <div class="bar-item">
+      <div><div class="label"><i class="fa-solid fa-cloud" style="color:var(--teal)"></i> Hạ tầng & AI — API, Database, Compute</div><div class="pct">40%</div></div>
+      <div class="amount">40 triệu</div>
+    </div>
+    <div class="bar-item">
+      <div><div class="label"><i class="fa-solid fa-bullhorn" style="color:var(--teal)"></i> Marketing & Outreach — Seeding cộng đồng</div><div class="pct">20%</div></div>
+      <div class="amount">20 triệu</div>
+    </div>
+    <div class="bar-item">
+      <div><div class="label"><i class="fa-solid fa-shield-halved" style="color:var(--teal)"></i> Dự phòng vận hành</div><div class="pct">10%</div></div>
+      <div class="amount">10 triệu</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SECTION 5: ĐÓNG GÓP -->
+<section class="section" id="dong-gop">
+<div class="container">
+  <span class="section-tag tag-terra">Ủng hộ</span>
+  <h2>Cùng Nhau Xây Ngôi Nhà Này</h2>
+  <p class="lead">Mỗi đóng góp — dù nhỏ hay lớn — giúp một gia đình có con đặc biệt tìm thấy nơi họ không bị phán xét. Quét mã QR bên dưới để chuyển khoản trực tiếp.</p>
+
+  <!-- QR + Bank -->
+  <div class="pay-box" id="qr">
+    <img class="qr-img" id="qr-img" alt="Mã QR chuyển khoản BIDV — Sắc Màu Của Con" loading="lazy">
+    <div class="bank-info">
+      <div class="brow"><span class="k">Ngân hàng</span><span class="v" id="bank-name">BIDV</span></div>
+      <div class="brow"><span class="k">Chủ tài khoản</span><span class="v" id="acc-name">ĐOÀN THÁI THIỆN</span></div>
+      <div class="brow"><span class="k">Số tài khoản</span><span class="v" id="acc-no">0988005789</span></div>
+      <div class="brow"><span class="k">Nội dung gợi ý</span><span class="v">SacMau [Tên của bạn]</span></div>
+      <button class="copy-btn" onclick="copyAcc()"><i class="fa-solid fa-copy"></i> Sao chép số tài khoản</button>
+      <p style="font-size:.78rem;color:var(--gray);margin-top:10px;margin-bottom:0">Mọi giao dịch sẽ tự động được công khai (ẩn các thông tin nhạy cảm) trong bảng Nhà Tài Trợ.</p>
+    </div>
+  </div>
+
+  <div class="pay-actions">
+    <a class="cta-btn" href="#qr" style="margin-left:0"><i class="fa-solid fa-qrcode"></i> Ủng hộ qua QR</a>
+    <a class="cta-btn sec" id="sheet-link" href="https://docs.google.com/spreadsheets/d/1LUxHcsDEOtB_771O_XvSU_xzpii3466X4cq2_gNomlg/edit?usp=sharing" target="_blank" rel="noopener"><i class="fa-solid fa-table-list"></i> Báo cáo minh bạch (Nhà Tài Trợ)</a>
+  </div>
+
+  <!-- DONOR TABLE (Nhà Tài Trợ) -->
+  <h3 style="margin-top:34px"><i class="fa-solid fa-heart" style="color:var(--terra-deep)"></i> Nhà Tài Trợ — Bảng Vinh Danh Công Khai</h3>
+  <p style="font-size:.88rem;color:#55635f">Danh sách dưới đây được lấy trực tiếp từ Google Sheet công khai — tự động cập nhật số tiền, nội dung và thời gian chuyển khoản.</p>
+  <div class="donor-wrap" id="donor-wrap">
+    <div class="donor-empty" id="donor-loading">Đang tải danh sách nhà tài trợ…</div>
+  </div>
+  <a href="https://docs.google.com/spreadsheets/d/1LUxHcsDEOtB_771O_XvSU_xzpii3466X4cq2_gNomlg/edit?usp=sharing" target="_blank" rel="noopener" style="font-size:.88rem;font-weight:700;color:var(--teal2);text-decoration:none">Xem toàn bộ minh bạch trên Google Sheet →</a>
+
+  <!-- Donate tiers -->
+  <h3 style="margin-top:34px">Các Mức Đồng Hành</h3>
+  <div class="donate-grid">
+    <div class="donate-card dc1">
+      <span class="donate-ico"><i class="fa-solid fa-seedling"></i></span>
+      <div class="donate-amount">50.000đ</div>
+      <div class="donate-name">Người Gieo Hạt</div>
+      <div class="donate-desc">1 tháng server cho 1 gia đình được hỗ trợ</div>
+    </div>
+    <div class="donate-card dc2">
+      <span class="donate-ico"><i class="fa-solid fa-handshake-angle"></i></span>
+      <div class="donate-amount">200.000đ</div>
+      <div class="donate-name">Người Đồng Hành</div>
+      <div class="donate-desc">Bảo vệ 10 đứa trẻ trong 1 tháng</div>
+    </div>
+    <div class="donate-card dc3">
+      <span class="donate-ico"><i class="fa-solid fa-trowel-bricks"></i></span>
+      <div class="donate-amount">1.000.000đ</div>
+      <div class="donate-name">Người Xây Tổ</div>
+      <div class="donate-desc">Góp phần build 1 tính năng trên platform</div>
+    </div>
+    <div class="donate-card dc4">
+      <span class="donate-ico"><i class="fa-solid fa-star"></i></span>
+      <div class="donate-amount">5.000.000đ</div>
+      <div class="donate-name">Nhà Tài Trợ Sắc Màu</div>
+      <div class="donate-desc">Tên trong credits + early access + cảm ơn đặc biệt</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SECTION 6: FAQ -->
+<section class="section" id="faq">
+<div class="container">
+  <span class="section-tag tag-teal">FAQ</span>
+  <h2>Những Câu Hỏi Thường Gặp</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Dự án miễn phí, không quảng cáo — làm sao tự nuôi sống?<span class="icon"><i class="fa-solid fa-plus"></i></span></div>
+      <div class="faq-a">Giai đoạn 1–2 dựa vào cộng đồng (crowdfunding) và founder tự đầu tư. Giai đoạn 3 tìm tài trợ NGO quốc tế và mô hình B2B: trung tâm can thiệp, trường học đặc biệt, bệnh viện trả phí dùng dashboard AI để theo dõi học sinh. Cha mẹ không bao giờ là người trả tiền.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Tại sao không dùng ChatGPT thay vì build AI riêng?<span class="icon"><i class="fa-solid fa-plus"></i></span></div>
+      <div class="faq-a">ChatGPT trả lời chung chung từ internet tổng quát. AI của Sắc Màu dùng các AI Agent mạnh nhất hiện nay + train trên 5.782 papers + 731 transcript chuyên sâu về ADHD/tự kỷ, tạo hồ sơ riêng cho từng bé, hoàn toàn bằng tiếng Việt và bảo mật data — không chia sẻ cho bên thứ ba.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Tiền quyên góp có minh bạch không?<span class="icon"><i class="fa-solid fa-plus"></i></span></div>
+      <div class="faq-a">Có. Mọi giao dịch chuyển khoản tới tài khoản gây quỹ được tự động ghi nhận và công khai trên Google Sheet (chế độ chỉ xem) — gồm số tiền, nội dung và thời gian. Con số "đã quyên góp" trên trang này được lấy trực tiếp từ chính nguồn đó theo thời gian thực.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">Đăng thông tin về con lên platform có an toàn không?<span class="icon"><i class="fa-solid fa-plus"></i></span></div>
+      <div class="faq-a">Hồ sơ con: private by default — chỉ cha mẹ xem, tùy chọn chia sẻ với chuyên gia cụ thể. Cộng đồng chia sẻ trải nghiệm của cha mẹ, không phải video của con. Có tùy chọn blur mặt, ẩn danh hoàn toàn. Data không bao giờ dùng để train AI của bên thứ ba.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SECTION 7: NGƯỜI SÁNG LẬP -->
+<section class="section" id="founder">
+<div class="container">
+  <span class="section-tag tag-terra">Người sáng lập</span>
+  <h2>Người Đứng Sau Dự Án</h2>
+
+  <div class="founder-card">
+    <div class="founder-name">Đoàn Thái Thiện</div>
+    <div class="founder-role">Người Sáng Lập · Sắc Màu Của Con</div>
+    <p>Người khởi xướng hệ sinh thái nội dung này là một người cha đã <strong>đồng hành cùng con trai lớn tự kỷ suốt 8 năm</strong> và có nhiều năm tìm hiểu về ADHD/tự kỷ — một trong những người đầu tiên tại Việt Nam tiếp cận lĩnh vực này dựa hoàn toàn trên <strong>evidence khoa học</strong>.</p>
+    <p>Hơn một năm gần đây, anh đã dành tâm sức xây dựng một knowledge base gồm <strong>5.782 papers nghiên cứu</strong> và <strong>731 transcript</strong> từ các chuyên gia hàng đầu thế giới cùng những kênh, website lớn toàn cầu về ADHD/tự kỷ — làm nền tảng cho cả hệ sinh thái này.</p>
+    <p style="margin-bottom:0;color:var(--teal2);font-style:italic"><i class="fa-solid fa-envelope"></i> doanthaithien@gmail.com &nbsp;·&nbsp; <i class="fa-brands fa-youtube"></i> youtube.com/@thegioisacmaucuasu7725</p>
+  </div>
+</div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>🌈 Hành Trình Bắt Đầu Từ Hôm Nay</h2>
+  <p>Không cần nhiều. Chỉ cần đủ người tin vào điều này. Một gia đình tìm được câu trả lời đúng lúc có thể thay đổi cả cuộc đời của một đứa trẻ.</p>
+  <a href="#dong-gop" class="cta-btn"><i class="fa-solid fa-heart"></i> Ủng hộ ngay</a>
+  <a href="https://youtube.com/@thegioisacmaucuasu7725" target="_blank" rel="noopener" class="cta-btn sec">Xem kênh YouTube →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>🌈 <strong>Sắc Màu Của Con</strong> &nbsp;·&nbsp; doanthaithien@gmail.com &nbsp;·&nbsp; <a href="https://youtube.com/@thegioisacmaucuasu7725" target="_blank" rel="noopener">YouTube</a> &nbsp;·&nbsp; sacmau.vn <em>(coming soon)</em></div>
+  <p class="disclaimer">Đề án gọi vốn cộng đồng phi lợi nhuận xã hội. AI Chuyên Gia ADHD cung cấp thông tin hỗ trợ dựa trên nghiên cứu khoa học — không thay thế chẩn đoán và tư vấn y tế chuyên nghiệp. Phiên bản 2026-05-23.</p>
+</footer>
+
+<!-- FLOATING DONATE BUTTON -->
+<a href="#dong-gop" class="float-donate"><i class="fa-solid fa-heart"></i> Ủng hộ</a>
+
+<script>
+/* ============================================================
+   CẤU HÌNH GÂY QUỸ — chỉnh tại đây
+   ============================================================ */
+const FUND = {
+  goal: 100000000,                 // Mục tiêu GĐ1 (VNĐ)
+  bankCode: 'BIDV',                // Mã ngân hàng VietQR
+  accountNo: '0988005789',         // Số tài khoản nhận
+  accountName: 'DOAN THAI THIEN',  // Tên chủ TK (không dấu cho QR)
+  transferNote: 'Ung ho Sac Mau Cua Con',
+  sheetId: '1LUxHcsDEOtB_771O_XvSU_xzpii3466X4cq2_gNomlg',
+  sheetGid: '0',                   // gid của tab dữ liệu (0 = tab đầu tiên, không phụ thuộc tên)
+  manualRaised: 0                  // Dùng khi Sheet chưa có dữ liệu / không đọc được
+};
+
+/* ----- Cấu trúc cột Google Sheet mong đợi (dòng 1 là tiêu đề) -----
+   Cột A: Ngày giờ        (vd 23/05/2026 14:30)
+   Cột B: Người ủng hộ    (tên / ẩn danh)
+   Cột C: Số tiền         (vd 500000 hoặc 500.000)
+   Cột D: Nội dung CK     (lời nhắn)
+   -> Casso/SePay có thể map cột tự động đổ vào đây.            */
+
+const fmtVND = n => new Intl.NumberFormat('vi-VN').format(Math.round(n)) + 'đ';
+
+/* QR VietQR */
+(function setQR(){
+  const url = `https://img.vietqr.io/image/${FUND.bankCode}-${FUND.accountNo}-compact2.png`
+    + `?addInfo=${encodeURIComponent(FUND.transferNote)}`
+    + `&accountName=${encodeURIComponent(FUND.accountName)}`;
+  document.getElementById('qr-img').src = url;
+  document.getElementById('acc-no').textContent = FUND.accountNo;
+  document.getElementById('goal-amount').textContent = fmtVND(FUND.goal);
+})();
+
+function copyAcc(){
+  navigator.clipboard.writeText(FUND.accountNo).then(()=>{
+    const b = event.target.closest('.copy-btn');
+    const old = b.innerHTML;
+    b.innerHTML = '<i class="fa-solid fa-check"></i> Đã sao chép!';
+    setTimeout(()=>b.innerHTML = old, 1800);
+  });
+}
+
+/* CSV parser (xử lý field có dấu phẩy trong ngoặc kép) */
+function parseCSV(text){
+  const rows=[]; let row=[], val='', q=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){
+      if(c==='"'){ if(text[i+1]==='"'){val+='"';i++;} else q=false; }
+      else val+=c;
+    } else {
+      if(c==='"') q=true;
+      else if(c===','){ row.push(val); val=''; }
+      else if(c==='\n'){ row.push(val); rows.push(row); row=[]; val=''; }
+      else if(c==='\r'){}
+      else val+=c;
+    }
+  }
+  if(val!==''||row.length){ row.push(val); rows.push(row); }
+  return rows;
+}
+
+const toNumber = s => parseInt(String(s||'').replace(/[^\d]/g,''),10) || 0;
+
+function renderFund(raised, donors){
+  document.getElementById('raised-amount').textContent = fmtVND(raised);
+  const pct = Math.min(100, FUND.goal>0 ? (raised/FUND.goal*100) : 0);
+  document.getElementById('prog-fill').style.width = pct.toFixed(1)+'%';
+  document.getElementById('prog-pct').textContent = pct.toFixed(1)+'%';
+  document.getElementById('donor-count').textContent = donors.length;
+}
+
+function renderDonors(donors){
+  const wrap = document.getElementById('donor-wrap');
+  if(!donors.length){
+    wrap.innerHTML = '<div class="donor-empty">💛 <b>Chưa có nhà tài trợ nào</b> — hãy là người đầu tiên gieo hạt cho ngôi nhà này!</div>';
+    return;
+  }
+  const recent = donors.slice().reverse().slice(0,50); // mới nhất lên đầu
+  let html = '<table><thead><tr><th>Thời gian</th><th>Nhà tài trợ</th><th>Số tiền</th><th>Lời nhắn</th></tr></thead><tbody>';
+  recent.forEach(d=>{
+    html += `<tr><td>${esc(d.time)}</td><td>${esc(d.name)||'Ẩn danh'}</td>`
+         +  `<td class="amt-col">${fmtVND(d.amount)}</td><td>${esc(d.note)}</td></tr>`;
+  });
+  html += '</tbody></table>';
+  wrap.innerHTML = html;
+}
+function esc(s){ return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* Lấy dữ liệu từ Google Sheet công khai (gviz CSV) */
+function loadDonations(){
+  const url = `https://docs.google.com/spreadsheets/d/${FUND.sheetId}/gviz/tq`
+    + `?tqx=out:csv&gid=${encodeURIComponent(FUND.sheetGid)}`;
+  fetch(url).then(r=>r.text()).then(text=>{
+    const rows = parseCSV(text).filter(r=>r.some(c=>c&&c.trim()!==''));
+    if(rows.length>1) rows.shift(); // bỏ dòng tiêu đề
+    const donors = rows.map(r=>({
+      time:(r[0]||'').trim(), name:(r[1]||'').trim(),
+      amount:toNumber(r[2]), note:(r[3]||'').trim()
+    })).filter(d=>d.amount>0 || d.name);
+    const raised = donors.reduce((s,d)=>s+d.amount,0) || FUND.manualRaised;
+    renderFund(raised, donors);
+    renderDonors(donors);
+    document.getElementById('update-status').textContent =
+      'Cập nhật lúc ' + new Date().toLocaleTimeString('vi-VN');
+  }).catch(()=>{
+    renderFund(FUND.manualRaised, []);
+    document.getElementById('donor-wrap').innerHTML =
+      '<div class="donor-empty">Chưa kết nối được dữ liệu. Xem trực tiếp trên <a href="https://docs.google.com/spreadsheets/d/'+FUND.sheetId+'/edit" target="_blank">Google Sheet</a>.</div>';
+    document.getElementById('update-status').textContent = 'Đang chờ dữ liệu từ Google Sheet';
+  });
+}
+loadDonations();
+setInterval(loadDonations, 60000); // tự làm mới mỗi 60s
+
+/* Scale webapp demo (thu nhỏ desktop 1280px vừa khung, giữ tương tác) */
+(function scaleEmbed(){
+  const vp = document.querySelector('.embed-viewport');
+  const fr = vp && vp.querySelector('iframe');
+  if(!vp || !fr) return;
+  const DW = 1280, DH = 840;
+  function fit(){
+    const s = vp.clientWidth / DW;
+    fr.style.transform = 'scale(' + s + ')';
+    vp.style.height = (DH * s) + 'px';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+})();
+
+/* FAQ toggle */
+function toggle(el){
+  const a = el.nextElementSibling;
+  const icon = el.querySelector('.icon i');
+  if(a.classList.contains('open')){
+    a.classList.remove('open'); icon.className='fa-solid fa-plus';
+  } else {
+    document.querySelectorAll('.faq-a.open').forEach(x=>x.classList.remove('open'));
+    document.querySelectorAll('.faq-q .icon i').forEach(x=>x.className='fa-solid fa-plus');
+    a.classList.add('open'); icon.className='fa-solid fa-minus';
+  }
+}
+</script>
+</body>
+</html>
