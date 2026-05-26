@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sắc Màu — Nền tảng cộng đồng (demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:        oklch(98.5% 0.006 220);
+  --surface:   oklch(100% 0 0);
+  --surface-2: oklch(96.5% 0.014 205);
+  --fg:        oklch(33% 0.035 245);
+  --muted:     oklch(54% 0.028 245);
+  --border:    oklch(92% 0.012 220);
+  --teal:      oklch(64% 0.10 205);
+  --teal-deep: oklch(56% 0.10 215);
+  --teal-soft: oklch(93% 0.045 200);
+  --blue:      oklch(60% 0.09 242);
+  --warm:      oklch(80% 0.135 78);
+  --warm-deep: oklch(72% 0.145 60);
+  --mint:   oklch(90% 0.06 165);
+  --lav:    oklch(90% 0.05 290);
+  --peach:  oklch(91% 0.06 55);
+  --sky:    oklch(91% 0.05 230);
+  --rose:   oklch(91% 0.05 10);
+  --ok:     oklch(64% 0.12 150);
+  --font-display:'Nunito', system-ui, -apple-system, sans-serif;
+  --font-body:-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --shadow:0 1px 2px oklch(50% 0.05 240 / .04), 0 8px 24px oklch(50% 0.05 240 / .06);
+  --shadow-sm:0 1px 2px oklch(50% 0.05 240 / .05), 0 3px 10px oklch(50% 0.05 240 / .05);
+  --r:18px; --r-sm:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  font-family:var(--font-body); color:var(--fg);
+  background:
+    radial-gradient(1100px 520px at 12% -10%, oklch(95% 0.04 200 / .8), transparent 60%),
+    radial-gradient(900px 480px at 100% 0%, oklch(96% 0.035 75 / .6), transparent 55%),
+    var(--bg);
+  min-height:100vh; padding:40px 28px 56px; display:flex; flex-direction:column; align-items:center;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--font-display); margin:0; letter-spacing:-.01em; line-height:1.18}
+p{margin:0; line-height:1.55}
+button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit}
+.icon{width:20px; height:20px; stroke:currentColor; stroke-width:1.8; fill:none;
+  stroke-linecap:round; stroke-linejoin:round; flex:none}
+
+/* ---------- Browser chrome ---------- */
+.browser{width:100%; max-width:1320px; background:var(--surface);
+  border:1px solid var(--border); border-radius:16px; overflow:hidden;
+  box-shadow:0 30px 80px oklch(45% 0.06 240 / .14), 0 6px 20px oklch(45% 0.06 240 / .08)}
+.titlebar{display:flex; align-items:center; gap:14px; padding:11px 16px;
+  background:linear-gradient(var(--surface-2), oklch(95% 0.012 210));
+  border-bottom:1px solid var(--border)}
+.dots{display:flex; gap:8px}
+.dots i{width:12px; height:12px; border-radius:50%; display:block}
+.dots i:nth-child(1){background:oklch(70% 0.16 25)}
+.dots i:nth-child(2){background:oklch(82% 0.13 80)}
+.dots i:nth-child(3){background:oklch(75% 0.14 145)}
+.urlbar{flex:1; display:flex; align-items:center; gap:9px; max-width:560px; margin:0 auto;
+  background:var(--surface); border:1px solid var(--border); border-radius:9px;
+  padding:7px 14px; color:var(--muted); font-size:13.5px}
+.urlbar .icon{width:14px; height:14px; stroke:var(--ok)}
+.urlbar b{color:var(--fg); font-weight:600}
+.tb-actions{display:flex; gap:16px; color:var(--muted)}
+
+/* ---------- App bar ---------- */
+.app{background:var(--bg)}
+.appbar{position:sticky; top:0; z-index:20; display:flex; align-items:center; gap:22px;
+  padding:14px 26px; background:oklch(100% 0 0 / .82); backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom:1px solid var(--border)}
+.brand{display:flex; align-items:center; gap:11px; font-family:var(--font-display);
+  font-weight:800; font-size:20px; letter-spacing:-.02em; white-space:nowrap}
+.logo{width:36px; height:36px; border-radius:11px; display:grid; place-items:center;
+  background:conic-gradient(from 200deg, var(--teal), var(--sky), var(--lav), var(--peach), var(--warm), var(--teal));
+  box-shadow:inset 0 0 0 3px oklch(100% 0 0 / .65)}
+.logo span{width:12px; height:12px; border-radius:50%; background:var(--surface)}
+.brand small{display:block; font-family:var(--font-body); font-weight:600; font-size:11px;
+  color:var(--muted); letter-spacing:.02em; margin-top:1px}
+
+.nav{display:flex; gap:4px; margin-left:6px}
+.tab{display:flex; align-items:center; gap:8px; padding:9px 14px; border-radius:11px;
+  color:var(--muted); font-size:14.5px; font-weight:600; transition:.18s; white-space:nowrap}
+.tab .icon{width:18px;height:18px}
+.tab:hover{background:var(--surface-2); color:var(--fg)}
+.tab.active{background:var(--teal-soft); color:var(--teal-deep)}
+
+.appbar-right{margin-left:auto; display:flex; align-items:center; gap:12px}
+.search{display:flex; align-items:center; gap:8px; background:var(--surface);
+  border:1px solid var(--border); border-radius:10px; padding:8px 12px; color:var(--muted);
+  font-size:13.5px; width:210px}
+.search input{border:none; outline:none; background:none; font:inherit; color:var(--fg); width:100%}
+.search .icon{width:16px;height:16px}
+.btn{display:inline-flex; align-items:center; gap:8px; border-radius:11px; font-weight:700;
+  font-size:14px; padding:10px 16px; transition:.18s}
+.btn-donate{background:var(--warm); color:oklch(32% 0.06 70);
+  box-shadow:0 2px 10px oklch(72% 0.14 70 / .35)}
+.btn-donate:hover{background:var(--warm-deep); color:oklch(28% 0.05 60)}
+.iconbtn{position:relative; width:40px; height:40px; border-radius:11px; display:grid; place-items:center;
+  color:var(--muted); border:1px solid var(--border); background:var(--surface)}
+.iconbtn:hover{color:var(--fg)}
+.badge{position:absolute; top:-4px; right:-4px; min-width:17px; height:17px; padding:0 4px;
+  background:var(--warm-deep); color:#fff; border-radius:9px; font-size:10.5px; font-weight:800;
+  display:grid; place-items:center; border:2px solid var(--surface)}
+.avatar{width:40px; height:40px; border-radius:12px; background:linear-gradient(140deg,var(--lav),var(--sky));
+  display:grid; place-items:center; font-family:var(--font-display); font-weight:800; color:var(--teal-deep);
+  box-shadow:var(--shadow-sm)}
+
+/* ---------- View / layout ---------- */
+.view{display:none; padding:30px 34px 44px; animation:fade .35s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0; transform:translateY(6px)}to{opacity:1;transform:none}}
+.wrap{max-width:1180px; margin:0 auto}
+.eyebrow{font-family:var(--font-display); font-weight:800; font-size:12px; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--teal)}
+.sec-head{display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin:34px 0 16px}
+.sec-head h2{font-size:23px}
+.sec-head p{color:var(--muted); font-size:14px; margin-top:4px}
+.link{color:var(--teal-deep); font-weight:700; font-size:13.5px; display:inline-flex; align-items:center; gap:5px}
+.link .icon{width:15px;height:15px}
+
+/* hero */
+.hero{display:grid; grid-template-columns:1.35fr .9fr; gap:24px; align-items:stretch}
+.hero-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+  padding:30px 32px; box-shadow:var(--shadow); position:relative; overflow:hidden}
+.hero-main{background:
+   radial-gradient(420px 300px at 100% 0%, oklch(94% 0.05 200 / .9), transparent 70%),
+   var(--surface)}
+.hero-main h1{font-size:34px; line-height:1.12; max-width:18ch}
+.hero-main h1 em{font-style:normal; color:var(--teal-deep)}
+.hero-main p{color:var(--muted); font-size:15.5px; margin-top:14px; max-width:46ch}
+.hero-cta{display:flex; gap:12px; margin-top:22px; flex-wrap:wrap}
+.btn-primary{background:var(--teal); color:#fff; box-shadow:0 2px 12px oklch(64% 0.10 205 / .35)}
+.btn-primary:hover{background:var(--teal-deep)}
+.btn-ghost{background:var(--surface); border:1px solid var(--border); color:var(--fg)}
+.btn-ghost:hover{background:var(--surface-2)}
+.trust{display:flex; gap:22px; margin-top:26px; padding-top:20px; border-top:1px dashed var(--border)}
+.trust div b{font-family:var(--font-display); font-size:22px; display:block; color:var(--fg)}
+.trust div span{font-size:12.5px; color:var(--muted)}
+
+.hero-side{display:flex; flex-direction:column; gap:14px; padding:22px}
+.greet{display:flex; align-items:center; gap:12px}
+.greet .av{width:46px;height:46px;border-radius:14px;background:linear-gradient(140deg,var(--peach),var(--warm));
+  display:grid;place-items:center;font-family:var(--font-display);font-weight:800;color:oklch(40% 0.08 60)}
+.greet b{font-family:var(--font-display); font-size:16px}
+.greet span{font-size:12.5px; color:var(--muted)}
+.mood{background:var(--surface-2); border-radius:var(--r-sm); padding:14px 16px}
+.mood p{font-size:13px; color:var(--muted)}
+.mood-row{display:flex; gap:9px; margin-top:11px}
+.mood-row button{flex:1; aspect-ratio:1; border-radius:12px; background:var(--surface);
+  border:1px solid var(--border); display:grid; place-items:center; transition:.16s}
+.mood-row button:hover{transform:translateY(-2px); box-shadow:var(--shadow-sm)}
+.mood-row button.on{border-color:var(--teal); background:var(--teal-soft)}
+.face{width:26px;height:26px;stroke:var(--fg);stroke-width:1.7;fill:none;stroke-linecap:round}
+.daily{margin-top:auto; background:linear-gradient(135deg,var(--teal-soft),oklch(95% 0.04 75 / .6));
+  border-radius:var(--r-sm); padding:15px 16px}
+.daily span{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep)}
+.daily p{font-family:var(--font-display); font-weight:700; margin-top:5px; font-size:15px}
+
+/* kids tiles */
+.tiles{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.tile{border-radius:var(--r); padding:22px 20px; border:1px solid var(--border);
+  background:var(--surface); box-shadow:var(--shadow-sm); transition:.2s; text-align:left;
+  display:flex; flex-direction:column; gap:12px; min-height:150px}
+.tile:hover{transform:translateY(-3px); box-shadow:var(--shadow)}
+.tile .ti{width:50px;height:50px;border-radius:15px;display:grid;place-items:center}
+.tile .ti .icon{width:26px;height:26px;stroke-width:1.9}
+.tile h3{font-size:17px}
+.tile p{font-size:13px; color:var(--muted)}
+.tile .meta{margin-top:auto; font-size:12px; font-weight:700; color:var(--teal-deep); display:flex; align-items:center; gap:6px}
+.t-mint .ti{background:var(--mint); color:oklch(40% 0.1 165)}
+.t-lav  .ti{background:var(--lav);  color:oklch(42% 0.1 290)}
+.t-peach .ti{background:var(--peach);color:oklch(44% 0.11 50)}
+.t-sky  .ti{background:var(--sky);  color:oklch(42% 0.1 240)}
+.t-rose .ti{background:var(--rose); color:oklch(44% 0.11 12)}
+.t-teal .ti{background:var(--teal-soft); color:var(--teal-deep)}
+
+/* generic cards / grid */
+.grid2{display:grid; grid-template-columns:1.5fr 1fr; gap:22px; align-items:start}
+.card{background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+  box-shadow:var(--shadow-sm); overflow:hidden}
+.card-pad{padding:22px 24px}
+.card h3{font-size:17px}
+.card-head{display:flex; align-items:center; gap:10px; margin-bottom:4px}
+.chip{display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:700;
+  padding:4px 9px; border-radius:8px; background:var(--surface-2); color:var(--muted)}
+.chip.teal{background:var(--teal-soft); color:var(--teal-deep)}
+.chip.warm{background:oklch(94% 0.06 78); color:oklch(48% 0.12 65)}
+.chip.ok{background:oklch(94% 0.06 150); color:oklch(45% 0.12 150)}
+
+/* video thumbs */
+.vid-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+.vid{border-radius:var(--r-sm); overflow:hidden; background:var(--surface); border:1px solid var(--border)}
+.vid .thumb{aspect-ratio:16/10; position:relative; display:grid; place-items:center; color:#fff}
+.vid .thumb .play{width:42px;height:42px;border-radius:50%;background:oklch(100% 0 0 / .92);
+  display:grid;place-items:center; box-shadow:var(--shadow)}
+.vid .thumb .play svg{width:18px;height:18px;fill:var(--teal-deep);stroke:none;margin-left:2px}
+.vid .dur{position:absolute; right:8px; bottom:8px; background:oklch(20% 0.02 250 / .7); color:#fff;
+  font-size:11px; font-weight:700; padding:2px 7px; border-radius:6px}
+.vid .vmeta{padding:11px 13px}
+.vid .vmeta b{font-family:var(--font-display); font-size:13.5px; display:block; line-height:1.3}
+.vid .vmeta span{font-size:11.5px; color:var(--muted)}
+.g-mint{background:linear-gradient(140deg,oklch(72% 0.1 165),oklch(64% 0.1 195))}
+.g-sky{background:linear-gradient(140deg,oklch(70% 0.1 230),oklch(64% 0.1 270))}
+.g-peach{background:linear-gradient(140deg,oklch(78% 0.12 60),oklch(72% 0.13 35))}
+.g-lav{background:linear-gradient(140deg,oklch(72% 0.09 295),oklch(66% 0.1 255))}
+.g-teal{background:linear-gradient(140deg,oklch(66% 0.1 200),oklch(58% 0.1 225))}
+.g-rose{background:linear-gradient(140deg,oklch(76% 0.1 15),oklch(72% 0.11 45))}
+
+/* lists */
+.list{display:flex; flex-direction:column}
+.row{display:flex; align-items:center; gap:14px; padding:14px 0; border-top:1px solid var(--border)}
+.row:first-child{border-top:none}
+.rank{width:30px;height:30px;border-radius:9px;background:var(--teal-soft);color:var(--teal-deep);
+  font-family:var(--font-display);font-weight:800;display:grid;place-items:center;font-size:14px;flex:none}
+.row .rmain{flex:1; min-width:0}
+.row .rmain b{font-family:var(--font-display); font-size:14.5px; display:block}
+.row .rmain span{font-size:12.5px; color:var(--muted)}
+.src{font-size:11.5px; font-weight:700; color:var(--teal-deep); display:inline-flex; align-items:center; gap:5px;
+  background:var(--surface-2); padding:3px 8px; border-radius:7px; white-space:nowrap}
+
+/* AI consult */
+.ai-grid{display:grid; grid-template-columns:1.6fr 1fr; gap:22px; align-items:start}
+.chat{background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+  box-shadow:var(--shadow); display:flex; flex-direction:column; min-height:560px; overflow:hidden}
+.chat-top{display:flex; align-items:center; gap:12px; padding:16px 20px; border-bottom:1px solid var(--border)}
+.chat-top .ava{width:44px;height:44px;border-radius:13px;background:linear-gradient(140deg,var(--teal),var(--blue));
+  display:grid;place-items:center;color:#fff}
+.chat-top b{font-family:var(--font-display); font-size:16px}
+.chat-top .stat{font-size:12px; color:var(--ok); font-weight:700; display:flex; align-items:center; gap:6px}
+.chat-top .stat i{width:7px;height:7px;border-radius:50%;background:var(--ok);display:block}
+.chat-body{flex:1; padding:22px 22px; display:flex; flex-direction:column; gap:16px; overflow:auto;
+  background:linear-gradient(var(--surface), var(--surface-2))}
+.msg{max-width:80%; display:flex; gap:10px}
+.msg .b{padding:13px 16px; border-radius:16px; font-size:14px; line-height:1.55}
+.msg.ai{align-self:flex-start}
+.msg.ai .b{background:var(--surface); border:1px solid var(--border); border-bottom-left-radius:5px}
+.msg.me{align-self:flex-end}
+.msg.me .b{background:var(--teal); color:#fff; border-bottom-right-radius:5px}
+.msg .av{width:32px;height:32px;border-radius:10px;flex:none;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(140deg,var(--teal),var(--blue))}
+.cite{margin-top:9px; display:flex; gap:7px; flex-wrap:wrap}
+.suggest{padding:13px 18px; border-top:1px solid var(--border); background:var(--surface)}
+.suggest .lab{font-size:11.5px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:9px}
+.qchips{display:flex; gap:9px; flex-wrap:wrap}
+.qchip{font-size:13px; font-weight:600; padding:8px 13px; border-radius:11px; border:1px solid var(--border);
+  background:var(--surface); color:var(--fg); transition:.16s}
+.qchip:hover{border-color:var(--teal); background:var(--teal-soft); color:var(--teal-deep)}
+.composer{display:flex; align-items:center; gap:10px; padding:14px 16px; border-top:1px solid var(--border); background:var(--surface)}
+.composer .field{flex:1; display:flex; align-items:center; gap:10px; background:var(--surface-2);
+  border:1px solid var(--border); border-radius:13px; padding:11px 15px}
+.composer input{flex:1; border:none; outline:none; background:none; font:inherit; font-size:14px; color:var(--fg)}
+.send{width:44px;height:44px;border-radius:13px;background:var(--warm);color:oklch(34% 0.07 65);
+  display:grid;place-items:center;box-shadow:0 2px 10px oklch(72% 0.14 70 / .35)}
+.send:hover{background:var(--warm-deep);color:#fff}
+.send .icon{width:20px;height:20px;stroke-width:2}
+
+.aside{display:flex; flex-direction:column; gap:18px}
+.profile .field-row{display:flex; flex-direction:column; gap:5px; margin-bottom:13px}
+.profile label{font-size:12px; font-weight:700; color:var(--muted)}
+.profile .inp{border:1px solid var(--border); border-radius:10px; padding:9px 12px; font-size:13.5px;
+  background:var(--surface-2); color:var(--fg)}
+.profile .inp.fill{background:var(--surface); color:var(--fg)}
+.pbar{height:7px; border-radius:5px; background:var(--surface-2); overflow:hidden; margin:6px 0 3px}
+.pbar i{display:block; height:100%; width:70%; border-radius:5px; background:linear-gradient(90deg,var(--teal),var(--blue))}
+.checkrow{display:flex; align-items:center; gap:10px; padding:9px 0; font-size:13.5px; border-top:1px solid var(--border)}
+.checkrow:first-of-type{border-top:none}
+.cbox{width:20px;height:20px;border-radius:7px;border:1.6px solid var(--border);flex:none;display:grid;place-items:center;color:#fff}
+.cbox.on{background:var(--ok); border-color:var(--ok)}
+.cbox .icon{width:13px;height:13px;stroke-width:2.5}
+.cbox.on .icon{display:block} .cbox .icon{display:none}
+
+/* parent diary */
+.timeline{position:relative; padding-left:26px}
+.timeline:before{content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:var(--border)}
+.tl{position:relative; padding:0 0 22px}
+.tl:last-child{padding-bottom:0}
+.tl .dot{position:absolute; left:-22px; top:3px; width:14px;height:14px;border-radius:50%;
+  background:var(--surface); border:3px solid var(--teal)}
+.tl.warm .dot{border-color:var(--warm-deep)}
+.tl time{font-size:12px; font-weight:700; color:var(--muted)}
+.tl b{font-family:var(--font-display); font-size:14.5px; display:block; margin:2px 0 3px}
+.tl p{font-size:13px; color:var(--muted)}
+.stat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+.stat{background:var(--surface-2); border-radius:var(--r-sm); padding:15px 16px}
+.stat b{font-family:var(--font-display); font-size:24px; display:block}
+.stat span{font-size:12px; color:var(--muted)}
+.stat .icon{width:18px;height:18px;stroke:var(--teal);margin-bottom:6px}
+
+/* footer note */
+.foot{max-width:1180px; margin:32px auto 0; display:flex; align-items:center; gap:10px;
+  color:var(--muted); font-size:12.5px; justify-content:center; text-align:center}
+.foot .icon{width:15px;height:15px;stroke:var(--teal)}
+
+@media (max-width:1080px){
+  .hero,.grid2,.ai-grid{grid-template-columns:1fr}
+  .tiles,.vid-grid{grid-template-columns:repeat(2,1fr)}
+  .nav .tab span{display:none}
+  .search{width:120px}
+}
+</style>
+</head>
+<body>
+<div class="browser" role="img" aria-label="Demo giao diện nền tảng cộng đồng Sắc Màu">
+  <!-- browser chrome -->
+  <div class="titlebar">
+    <div class="dots"><i></i><i></i><i></i></div>
+    <div class="urlbar">
+      <svg class="icon" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+      <span><b>sacmau.vn</b>/app</span>
+    </div>
+    <div class="tb-actions">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h16M12 4v16"/></svg>
+    </div>
+  </div>
+
+  <div class="app">
+    <!-- app bar -->
+    <header class="appbar">
+      <div class="brand">
+        <span class="logo"><span></span></span>
+        <span>Sắc Màu<small>Ngôi nhà an toàn của con</small></span>
+      </div>
+      <nav class="nav" id="nav">
+        <button class="tab active" data-view="home">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Trang chủ</span></button>
+        <button class="tab" data-view="kids">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 18a8 8 0 0116 0"/><path d="M7 18a5 5 0 0110 0"/><path d="M10 18a2 2 0 014 0"/></svg><span>Góc của con</span></button>
+        <button class="tab" data-view="ai">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a3 3 0 01-3 3H8l-4 3V6a3 3 0 013-3h10a3 3 0 013 3z"/><path d="M9 10h.01M13 10h.01"/></svg><span>Tư vấn AI</span></button>
+        <button class="tab" data-view="parent">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 21s-7-4.3-9.5-8.5C.7 9 2.3 5 6 5c2 0 3.2 1.2 4 2.4C10.8 6.2 12 5 14 5c3.7 0 5.3 4 3.5 7.5C19 16.7 12 21 12 21z"/></svg><span>Góc cha mẹ</span></button>
+        <button class="tab" data-view="know">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7c.6.5 1 1.2 1 2h6c0-.8.4-1.5 1-2A7 7 0 0012 2z"/></svg><span>Kiến thức</span></button>
+      </nav>
+      <div class="appbar-right">
+        <div class="search">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+          <input placeholder="Tìm video, game…" aria-label="Tìm kiếm">
+        </div>
+        <button class="btn btn-donate">
+          <svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M12 21s-7-4.3-9.5-8.5C.7 9 2.3 5 6 5c2 0 3.2 1.2 4 2.4C10.8 6.2 12 5 14 5c3.7 0 5.3 4 3.5 7.5C19 16.7 12 21 12 21z"/></svg>
+          Ủng hộ dự án</button>
+        <button class="iconbtn" aria-label="Thông báo">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
+          <span class="badge">3</span>
+        </button>
+        <div class="avatar">M</div>
+      </div>
+    </header>
+
+    <!-- ============ HOME ============ -->
+    <section class="view active" data-view="home">
+      <div class="wrap">
+        <div class="hero">
+          <div class="hero-card hero-main">
+            <span class="eyebrow">Nền tảng cộng đồng</span>
+            <h1 style="margin-top:12px">Nơi con <em>chơi, học và được lắng nghe</em> — an toàn mỗi ngày.</h1>
+            <p>Một không gian số lành mạnh thay cho YouTube và game tự do: video giáo dục theo lứa tuổi, trò chơi trí tuệ, góc chia sẻ mơ ước — và một trợ lý ADHD đồng hành cùng cha mẹ.</p>
+            <div class="hero-cta">
+              <button class="btn btn-primary" data-go="kids">
+                <svg class="icon" viewBox="0 0 24 24" style="width:17px;height:17px"><path d="M5 3l14 9-14 9z"/></svg>Khám phá Góc của con</button>
+              <button class="btn btn-ghost" data-go="ai">Hỏi trợ lý ADHD</button>
+            </div>
+            <div class="trust">
+              <div><b>An toàn</b><span>Nội dung được kiểm duyệt</span></div>
+              <div><b>Theo lứa tuổi</b><span>Cá nhân hoá theo nhận thức</span></div>
+              <div><b>Cùng cha mẹ</b><span>Đồng hành, không phán xét</span></div>
+            </div>
+          </div>
+
+          <div class="hero-card hero-side">
+            <div class="greet">
+              <span class="av">M</span>
+              <span><b>Chào con, Minh!</b><span>Hôm nay con cảm thấy thế nào?</span></span>
+            </div>
+            <div class="mood">
+              <p>Chạm vào khuôn mặt giống cảm xúc của con nhất nhé.</p>
+              <div class="mood-row" id="moodRow">
+                <button aria-label="Vui" class="on"><svg class="face" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg></button>
+                <button aria-label="Bình thường"><svg class="face" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14h8"/><path d="M9 9h.01M15 9h.01"/></svg></button>
+                <button aria-label="Buồn"><svg class="face" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 16s1.5-2 4-2 4 2 4 2"/><path d="M9 9h.01M15 9h.01"/></svg></button>
+                <button aria-label="Cáu"><svg class="face" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 16s1.5-2 4-2 4 2 4 2"/><path d="M8.5 8.5l1.5 1M15.5 8.5l-1.5 1"/></svg></button>
+              </div>
+            </div>
+            <div class="daily">
+              <span>Việc của hôm nay</span>
+              <p>Xem 1 video về sự tập trung và chơi 1 ván cờ trí tuệ ✓</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-head">
+          <div><span class="eyebrow">Dành cho con</span><h2>Góc của con</h2>
+            <p>Mỗi góc một sắc màu — chọn điều con thích nhất hôm nay.</p></div>
+          <a class="link" data-go="kids">Mở tất cả
+            <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="tiles">
+          <button class="tile t-teal" data-go="kids">
+            <span class="ti"><svg class="icon" viewBox="0 0 24 24"><path d="M9 4v16M15 4v16M4 9h16M4 15h16"/></svg></span>
+            <h3>Game trí tuệ</h3><p>Cờ caro, cờ vua, xếp hình — rèn sự tập trung và kiên nhẫn.</p>
+            <span class="meta">12 trò chơi</span></button>
+          <button class="tile t-sky" data-go="kids">
+            <span class="ti"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></span>
+            <h3>Video học &amp; chơi</h3><p>Giải trí xen kẽ giáo dục hành vi, chọn theo lứa tuổi của con.</p>
+            <span class="meta">Theo độ tuổi</span></button>
+          <button class="tile t-mint" data-go="kids">
+            <span class="ti"><svg class="icon" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span>
+            <h3>Âm nhạc thư giãn</h3><p>Bài hát và âm thanh dịu nhẹ giúp con bình tĩnh trở lại.</p>
+            <span class="meta">8 danh sách</span></button>
+          <button class="tile t-peach" data-go="parent">
+            <span class="ti"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg></span>
+            <h3>Mong ước của con</h3><p>Nơi con vẽ và kể về điều con mơ ước — để ba mẹ cùng hiểu.</p>
+            <span class="meta">Con chia sẻ</span></button>
+          <button class="tile t-lav" data-go="parent">
+            <span class="ti"><svg class="icon" viewBox="0 0 24 24"><path d="M7 4h10v4a5 5 0 01-10 0z"/><path d="M5 5H3v2a3 3 0 003 3M19 5h2v2a3 3 0 01-3 3M8 21h8M12 17v4"/></svg></span>
+            <h3>Tài năng của con</h3><p>Khoe những điều con làm giỏi để ba mẹ nuôi dưỡng đúng hướng.</p>
+            <span class="meta">Bộ sưu tập</span></button>
+          <button class="tile t-rose" data-go="kids">
+            <span class="ti"><svg class="icon" viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h7v18H6a2 2 0 01-2-2z"/><path d="M13 3h5a2 2 0 012 2v14a2 2 0 01-2 2h-5"/></svg></span>
+            <h3>Truyện kể bé nghe</h3><p>Truyện ngắn dễ thương, đọc cùng giọng đọc ấm áp.</p>
+            <span class="meta">Mới mỗi tuần</span></button>
+        </div>
+
+        <div class="sec-head">
+          <div><span class="eyebrow">Dành cho cha mẹ</span><h2>Đồng hành cùng ba mẹ</h2>
+            <p>Kiến thức đáng tin và một trợ lý luôn sẵn sàng.</p></div>
+        </div>
+        <div class="grid2">
+          <div class="card card-pad" style="background:linear-gradient(135deg,var(--teal-soft),oklch(96% 0.03 250));">
+            <div class="card-head">
+              <span class="chip teal"><svg class="icon" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M21 15a3 3 0 01-3 3H8l-4 3V6a3 3 0 013-3h10a3 3 0 013 3z"/></svg>AI + Chuyên gia ADHD</span>
+            </div>
+            <h3 style="font-size:20px">"Con không tập trung khi học, tôi nên bắt đầu từ đâu?"</h3>
+            <p style="color:var(--muted); margin-top:8px; font-size:14.5px">Trợ lý ADHD trả lời dựa trên tài liệu khoa học, trích dẫn nguồn rõ ràng, và gợi ý các bước cụ thể cho từng trường hợp của con.</p>
+            <button class="btn btn-primary" style="margin-top:18px" data-go="ai">
+              <svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M21 15a3 3 0 01-3 3H8l-4 3V6a3 3 0 013-3h10a3 3 0 013 3z"/></svg>Bắt đầu trò chuyện</button>
+          </div>
+          <div class="card card-pad">
+            <div class="card-head"><h3>Tài liệu nổi bật tuần này</h3></div>
+            <div class="list">
+              <div class="row"><span class="rank">1</span>
+                <div class="rmain"><b>Hiểu về ADHD ở trẻ tiểu học</b><span>Hành vi &amp; sự tập trung</span></div>
+                <span class="src">ADDitude</span></div>
+              <div class="row"><span class="rank">2</span>
+                <div class="rmain"><b>Dinh dưỡng &amp; ADHD: bằng chứng mới</b><span>Tổng quan nghiên cứu 2025</span></div>
+                <span class="src">PubMed</span></div>
+              <div class="row"><span class="rank">3</span>
+                <div class="rmain"><b>Quản lý cơn cáu gắt buổi tối</b><span>Kỹ thuật cho cha mẹ</span></div>
+                <span class="src">CHADD</span></div>
+            </div>
+            <a class="link" data-go="know" style="margin-top:14px">Xem Top 5 đầy đủ
+              <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ KIDS ============ -->
+    <section class="view" data-view="kids">
+      <div class="wrap">
+        <div class="sec-head" style="margin-top:6px">
+          <div><span class="eyebrow">Góc của con</span><h2>Hôm nay con muốn làm gì?</h2>
+            <p>Nội dung được chọn lọc theo lứa tuổi và sở thích của con.</p></div>
+          <span class="chip teal">Độ tuổi 6–9 · Đã lọc an toàn</span>
+        </div>
+
+        <div class="card card-pad" style="margin-bottom:8px">
+          <div class="card-head" style="justify-content:space-between">
+            <h3>Video học &amp; chơi</h3>
+            <a class="link">Xem tất cả <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <div class="vid-grid" style="margin-top:14px">
+            <div class="vid"><div class="thumb g-sky"><div class="play"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></svg></div><span class="dur">4:20</span></div>
+              <div class="vmeta"><b>Hơi thở bong bóng — bình tĩnh trong 1 phút</b><span>Kỹ năng cảm xúc · 6+</span></div></div>
+            <div class="vid"><div class="thumb g-mint"><div class="play"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></svg></div><span class="dur">7:05</span></div>
+              <div class="vmeta"><b>Vì sao chờ đến lượt lại quan trọng?</b><span>Giáo dục hành vi · 7+</span></div></div>
+            <div class="vid"><div class="thumb g-peach"><div class="play"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></svg></div><span class="dur">5:48</span></div>
+              <div class="vmeta"><b>Khám phá hệ Mặt Trời cùng bé</b><span>Học &amp; chơi · 6+</span></div></div>
+          </div>
+        </div>
+
+        <div class="sec-head"><div><h2 style="font-size:20px">Trò chơi trí tuệ</h2></div></div>
+        <div class="tiles">
+          <button class="tile t-teal"><span class="ti"><svg class="icon" viewBox="0 0 24 24"><path d="M9 4v16M15 4v16M4 9h16M4 15h16"/></svg></span>
+            <h3>Cờ caro</h3><p>Luyện tư duy và kiên nhẫn, chơi cùng máy hoặc cùng ba mẹ.</p><span class="meta">Dễ → Khó</span></button>
+          <button class="tile t-lav"><span class="ti"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></span>
+            <h3>Ghép hình</h3><p>Hoàn thành bức tranh từng mảnh, rèn sự tập trung.</p><span class="meta">120 cấp độ</span></button>
+          <button class="tile t-mint"><span class="ti"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <h3>Trí nhớ &amp; phản xạ</h3><p>Trò chơi lật thẻ ghi nhớ vui nhộn, tăng dần độ khó.</p><span class="meta">Mới</span></button>
+        </div>
+
+        <div class="sec-head"><div><h2 style="font-size:20px">Mong ước &amp; tài năng của con</h2>
+          <p>Khu vực con tự do chia sẻ — ba mẹ có thể xem để hiểu con hơn.</p></div></div>
+        <div class="grid2">
+          <div class="card card-pad" style="background:linear-gradient(135deg,oklch(95% 0.05 60 / .7),var(--surface))">
+            <span class="chip warm">Mong ước của con</span>
+            <h3 style="margin-top:10px; font-size:18px">"Con muốn nuôi một chú mèo và đặt tên là Mây."</h3>
+            <p style="color:var(--muted); margin-top:8px; font-size:14px">Minh chia sẻ · 2 ngày trước · kèm một bức vẽ</p>
+          </div>
+          <div class="card card-pad">
+            <span class="chip teal">Tài năng của con</span>
+            <h3 style="margin-top:10px; font-size:18px">Vẽ tranh &amp; kể chuyện</h3>
+            <p style="color:var(--muted); margin-top:8px; font-size:14px">6 tác phẩm trong bộ sưu tập. Ba mẹ đã đánh dấu để theo dõi hướng phát triển.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AI CONSULT ============ -->
+    <section class="view" data-view="ai">
+      <div class="wrap">
+        <div class="sec-head" style="margin-top:6px">
+          <div><span class="eyebrow">Tư vấn cho cha mẹ</span><h2>Trợ lý ADHD</h2>
+            <p>Hỏi đáp dựa trên tài liệu khoa học, có trích dẫn nguồn — không thay thế chẩn đoán y khoa.</p></div>
+        </div>
+        <div class="ai-grid">
+          <!-- chat -->
+          <div class="chat">
+            <div class="chat-top">
+              <span class="ava"><svg class="icon" viewBox="0 0 24 24"><path d="M21 15a3 3 0 01-3 3H8l-4 3V6a3 3 0 013-3h10a3 3 0 013 3z"/><path d="M9 10h.01M13 10h.01M17 10h.01"/></svg></span>
+              <div style="flex:1"><b>Trợ lý ADHD</b><div class="stat"><i></i>Đang trực tuyến · phản hồi tức thì</div></div>
+              <span class="chip teal">AI + Chuyên gia</span>
+            </div>
+            <div class="chat-body" id="chatBody">
+              <div class="msg me"><div class="b">Con nhà mình 7 tuổi, rất khó ngồi yên làm bài tập, chỉ tập trung được 5 phút là đứng dậy. Mình nên bắt đầu từ đâu ạ?</div></div>
+              <div class="msg ai"><span class="av"><svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M21 15a3 3 0 01-3 3H8l-4 3V6a3 3 0 013-3h10a3 3 0 013 3z"/></svg></span>
+                <div><div class="b">Cảm ơn ba mẹ đã chia sẻ. Với trẻ 7 tuổi, khả năng tập trung 5–10 phút là điều bình thường, nên mình hãy bắt đầu nhẹ nhàng:<br><br>
+                  • <b>Chia nhỏ thời gian:</b> học 5 phút – nghỉ 2 phút, tăng dần.<br>
+                  • <b>Giảm yếu tố gây xao nhãng:</b> bàn học gọn, tắt TV, ít đồ vật.<br>
+                  • <b>Khen ngợi nỗ lực</b> thay vì chỉ kết quả — củng cố tích cực rất hiệu quả với trẻ ADHD.<br><br>
+                  Ba mẹ thử trong 1 tuần và ghi vào <b>Nhật ký hành trình</b> nhé, mình sẽ cùng theo dõi.</div>
+                  <div class="cite"><span class="chip ok">Nguồn: CHADD.org</span><span class="chip ok">PubMed 2024</span></div>
+                </div></div>
+            </div>
+            <div class="suggest">
+              <div class="lab">Câu hỏi ba mẹ hay hỏi</div>
+              <div class="qchips" id="qchips">
+                <button class="qchip">Làm sao giảm cơn cáu gắt buổi tối?</button>
+                <button class="qchip">Chế độ ăn có ảnh hưởng đến ADHD không?</button>
+                <button class="qchip">Khi nào cần đưa con đi khám chuyên khoa?</button>
+                <button class="qchip">Con dùng màn hình bao nhiêu là hợp lý?</button>
+              </div>
+            </div>
+            <div class="composer">
+              <button class="iconbtn" aria-label="Đính kèm" style="width:44px;height:44px">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M21 12l-9 9a5 5 0 01-7-7l9-9a3.5 3.5 0 015 5l-9 9a2 2 0 01-3-3l8-8"/></svg></button>
+              <div class="field">
+                <input id="chatInput" placeholder="Nhập câu hỏi của ba mẹ…" aria-label="Nhập câu hỏi">
+              </div>
+              <button class="send" id="sendBtn" aria-label="Gửi">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+            </div>
+          </div>
+
+          <!-- aside profile -->
+          <div class="aside">
+            <div class="card card-pad profile">
+              <div class="card-head" style="justify-content:space-between"><h3>Hồ sơ của con</h3><span class="chip">Riêng tư</span></div>
+              <p style="font-size:12.5px;color:var(--muted);margin-bottom:14px">Điền để AI hiểu rõ con hơn và tư vấn sát hơn.</p>
+              <div class="field-row"><label>Tên gọi ở nhà</label><div class="inp fill">Bé Minh</div></div>
+              <div class="field-row"><label>Tuổi</label><div class="inp fill">7 tuổi</div></div>
+              <div class="field-row"><label>Biểu hiện chính</label><div class="inp fill">Khó tập trung, hay đứng dậy</div></div>
+              <div class="field-row"><label>Đã có chẩn đoán?</label><div class="inp">Chưa khám chuyên khoa</div></div>
+              <div style="font-size:12.5px;color:var(--muted)">Hồ sơ hoàn thiện</div>
+              <div class="pbar"><i></i></div>
+              <div style="font-size:12px;color:var(--teal-deep);font-weight:700">70% — thêm thông tin để tư vấn chính xác hơn</div>
+            </div>
+            <div class="card card-pad">
+              <h3 style="margin-bottom:10px">Tài liệu nên chuẩn bị</h3>
+              <div class="checkrow"><span class="cbox on"><svg class="icon" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>Sổ theo dõi hành vi 1 tuần</div>
+              <div class="checkrow"><span class="cbox on"><svg class="icon" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>Nhận xét của giáo viên</div>
+              <div class="checkrow"><span class="cbox"><svg class="icon" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>Video con học/chơi tại nhà</div>
+              <div class="checkrow"><span class="cbox"><svg class="icon" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>Tiền sử sức khoẻ gia đình</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PARENT ============ -->
+    <section class="view" data-view="parent">
+      <div class="wrap">
+        <div class="sec-head" style="margin-top:6px">
+          <div><span class="eyebrow">Góc cha mẹ · Riêng tư</span><h2>Nhật ký hành trình của con</h2>
+            <p>Chỉ ba mẹ nhìn thấy sau khi đăng nhập. Ghi lại từng bước nhỏ của con.</p></div>
+          <button class="btn btn-primary"><svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M12 5v14M5 12h14"/></svg>Thêm ghi chú</button>
+        </div>
+
+        <div class="stat-grid" style="margin-bottom:8px">
+          <div class="stat"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v6M12 22v-2"/><circle cx="12" cy="14" r="6"/></svg><b>14 ngày</b><span>Chuỗi ghi nhật ký liên tục</span></div>
+          <div class="stat"><svg class="icon" viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-8"/></svg><b>+8 phút</b><span>Thời gian tập trung trung bình tăng</span></div>
+          <div class="stat"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg><b>6 cột mốc</b><span>Điều con làm được tháng này</span></div>
+        </div>
+
+        <div class="grid2">
+          <div class="card card-pad">
+            <div class="card-head"><h3>Dòng thời gian gần đây</h3></div>
+            <div class="timeline" style="margin-top:14px">
+              <div class="tl"><span class="dot"></span><time>Hôm nay · 23/05</time>
+                <b>Con tự ngồi học 20 phút không đứng dậy</b>
+                <p>Áp dụng "học 5 phút – nghỉ 2 phút" như trợ lý gợi ý. Con hợp tác hơn hẳn.</p></div>
+              <div class="tl warm"><span class="dot"></span><time>Hôm qua · 22/05</time>
+                <b>Buổi tối hơi cáu khi tắt máy tính</b>
+                <p>Lần sau sẽ báo trước 5 phút và cho con chọn việc tiếp theo.</p></div>
+              <div class="tl"><span class="dot"></span><time>20/05</time>
+                <b>Hoàn thành 3 ván cờ caro</b>
+                <p>Con bắt đầu thích trò cần suy nghĩ, kiên nhẫn chờ đến lượt.</p></div>
+            </div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-head"><h3>Tâm trạng trong tuần</h3></div>
+            <p style="font-size:13px;color:var(--muted)">Tổng hợp từ phần "Hôm nay con thấy thế nào".</p>
+            <div style="display:flex;gap:9px;margin:16px 0;align-items:flex-end;height:120px">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px">
+                <div style="width:100%;height:70%;background:var(--mint);border-radius:8px"></div><span style="font-size:11px;color:var(--muted)">T2</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px">
+                <div style="width:100%;height:55%;background:var(--sky);border-radius:8px"></div><span style="font-size:11px;color:var(--muted)">T3</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px">
+                <div style="width:100%;height:40%;background:var(--peach);border-radius:8px"></div><span style="font-size:11px;color:var(--muted)">T4</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px">
+                <div style="width:100%;height:80%;background:var(--mint);border-radius:8px"></div><span style="font-size:11px;color:var(--muted)">T5</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px">
+                <div style="width:100%;height:90%;background:var(--mint);border-radius:8px"></div><span style="font-size:11px;color:var(--muted)">T6</span></div>
+            </div>
+            <span class="chip ok">Xu hướng tích cực dần về cuối tuần</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ KNOWLEDGE ============ -->
+    <section class="view" data-view="know">
+      <div class="wrap">
+        <div class="sec-head" style="margin-top:6px">
+          <div><span class="eyebrow">Kiến thức</span><h2>Top 5 tài liệu ADHD đáng đọc</h2>
+            <p>Chọn lọc, mới và có giá trị — luôn ghi rõ nguồn để ba mẹ kiểm chứng.</p></div>
+        </div>
+        <div class="grid2">
+          <div class="card card-pad">
+            <div class="list">
+              <div class="row"><span class="rank">1</span>
+                <div class="rmain"><b>Hiểu về ADHD ở trẻ tiểu học</b><span>Dấu hiệu, hành vi và cách hỗ trợ tại nhà</span></div>
+                <span class="src">ADDitude</span></div>
+              <div class="row"><span class="rank">2</span>
+                <div class="rmain"><b>Quản lý thời gian &amp; thói quen cho trẻ ADHD</b><span>Công cụ trực quan hoá lịch sinh hoạt</span></div>
+                <span class="src">Tiimo</span></div>
+              <div class="row"><span class="rank">3</span>
+                <div class="rmain"><b>Dinh dưỡng &amp; ADHD: tổng quan bằng chứng</b><span>Nghiên cứu được bình duyệt, cập nhật 2025</span></div>
+                <span class="src">PubMed</span></div>
+              <div class="row"><span class="rank">4</span>
+                <div class="rmain"><b>Đa dạng thần kinh là gì?</b><span>Nhìn nhận tích cực, không kỳ thị</span></div>
+                <span class="src">ADHD Foundation</span></div>
+              <div class="row"><span class="rank">5</span>
+                <div class="rmain"><b>Củng cố tích cực &amp; quản lý cảm xúc</b><span>Kỹ thuật thực hành cho cha mẹ</span></div>
+                <span class="src">CHADD</span></div>
+            </div>
+          </div>
+          <div class="card card-pad" style="background:linear-gradient(135deg,var(--teal-soft),var(--surface))">
+            <span class="chip teal">Video giải thích mới</span>
+            <h3 style="margin:12px 0 4px;font-size:18px">"ADHD không phải là lỗi của con"</h3>
+            <p style="font-size:13.5px;color:var(--muted)">Một video 6 phút giúp ba mẹ và con cùng hiểu, được dịch và kiểm duyệt nội dung.</p>
+            <div class="vid" style="margin-top:16px"><div class="thumb g-teal" style="aspect-ratio:16/9"><div class="play"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></svg></div><span class="dur">6:12</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="foot">
+  <svg class="icon" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+  Demo giao diện nền tảng cộng đồng <b style="color:var(--fg);margin:0 2px">&nbsp;Sắc Màu</b> — nội dung minh hoạ cho mục đích trình bày dự án.
+</div>
+
+<script>
+(function(){
+  var nav = document.getElementById('nav');
+  var tabs = nav.querySelectorAll('.tab');
+  var views = document.querySelectorAll('.view');
+  var url = document.querySelector('.urlbar span');
+  var paths = {home:'/app', kids:'/app/goc-cua-con', ai:'/app/tu-van-ai', parent:'/app/goc-cha-me', know:'/app/kien-thuc'};
+
+  function show(view){
+    tabs.forEach(function(t){ t.classList.toggle('active', t.dataset.view===view); });
+    views.forEach(function(v){ v.classList.toggle('active', v.dataset.view===view); });
+    url.innerHTML = '<b>sacmau.vn</b>' + (paths[view]||'/app');
+    try{ localStorage.setItem('sacmau_view', view); }catch(e){}
+    document.querySelector('.app').scrollTop = 0;
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+  nav.addEventListener('click', function(e){
+    var t = e.target.closest('.tab'); if(t) show(t.dataset.view);
+  });
+  document.body.addEventListener('click', function(e){
+    var g = e.target.closest('[data-go]'); if(g){ e.preventDefault(); show(g.dataset.go); }
+  });
+
+  // mood selector
+  var moodRow = document.getElementById('moodRow');
+  if(moodRow) moodRow.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    moodRow.querySelectorAll('button').forEach(function(x){x.classList.remove('on')}); b.classList.add('on');
+  });
+
+  // chat
+  var input = document.getElementById('chatInput');
+  var sendBtn = document.getElementById('sendBtn');
+  var body = document.getElementById('chatBody');
+  function addMsg(text, who){
+    var m = document.createElement('div'); m.className='msg '+who;
+    if(who==='ai'){
+      m.innerHTML = '<span class="av"><svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M21 15a3 3 0 01-3 3H8l-4 3V6a3 3 0 013-3h10a3 3 0 013 3z"/></svg></span><div><div class="b"></div></div>';
+      m.querySelector('.b').textContent = text;
+    } else {
+      m.innerHTML = '<div class="b"></div>'; m.querySelector('.b').textContent = text;
+    }
+    body.appendChild(m); body.scrollTop = body.scrollHeight;
+  }
+  function send(){
+    var v = (input.value||'').trim(); if(!v) return;
+    addMsg(v,'me'); input.value='';
+    setTimeout(function(){ addMsg('Cảm ơn ba mẹ. Mình sẽ phân tích dựa trên hồ sơ của con và các tài liệu khoa học, rồi gợi ý vài bước cụ thể ngay nhé.','ai'); }, 550);
+  }
+  if(sendBtn){ sendBtn.addEventListener('click', send);
+    input.addEventListener('keydown', function(e){ if(e.key==='Enter') send(); }); }
+  var qchips = document.getElementById('qchips');
+  if(qchips) qchips.addEventListener('click', function(e){
+    var c = e.target.closest('.qchip'); if(!c) return; input.value = c.textContent; input.focus();
+  });
+
+  // restore last view
+  try{ var last = localStorage.getItem('sacmau_view'); if(last && paths[last]) show(last); }catch(e){}
+})();
+</script>
+</body>
+</html>
